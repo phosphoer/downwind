@@ -6,7 +6,7 @@ function main()
     TANK.addSpace(space, "Game");
 
     var boat = TANK.createEntity();
-    boat.addComponents("Transform", "Box", "Skybox");
+    boat.addComponents("Transform", "Box", "Skybox", "Float");
     boat.Box.diffuse.setRGB(0.9, 0.9, 0.9);
     boat.Transform.scale.set(10, 10, 20);
     boat.Skybox.skyColor.setHex(0xCCFFFF);
