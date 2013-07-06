@@ -2,13 +2,13 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Gameplay");
+  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Stats", "Gameplay");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
   boat.addComponents("Skybox", "Controller", "Cannon", "Hierarchy");
   boat.Cannon.offset = new THREE.Vector3(5, 2.5, 0);
-  boat.Cannon.orientation = new THREE.Vector3(0,THREE.PI,0);
+  boat.Cannon.orientation = new THREE.Vector3(0, THREE.PI, 0);
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);
   boat.Skybox.scale.set(5000, 5000, 5000);
