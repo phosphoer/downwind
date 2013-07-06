@@ -20,6 +20,7 @@
 			}
 
 			var i, j, a, b;
+
 			for (i = 0; i < colliders.length; ++i)
 			{
 				for (j = i + 1; j < colliders.length; ++j)
@@ -29,8 +30,8 @@
 
 					if (isColliding(a, b))
 					{
-						a.material.color.setRGB(1, 0, 0);
-						b.material.color.setRGB(1, 0, 0);
+						a.parent.invoke("onCollide", b);
+						b.parent.invoke("onCollide", a);
 					}
 				}
 			}

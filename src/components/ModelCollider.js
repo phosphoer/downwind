@@ -11,6 +11,7 @@
   .construct(function ()
   {
     this.scale = 1;
+    this.debugDraw = false;
   })
 
   .initialize(function ()
@@ -30,7 +31,11 @@
 
     this.mesh.rotation = t.rotation;
     this.mesh.position = t.position;
-    g.scene.add(this.mesh);
+
+    if (this.debugDraw)
+    {
+      g.scene.add(this.mesh);
+    }
 
     this.position = t.position;
 
@@ -44,6 +49,11 @@
       this.radius = temp.length() / 2;
       this.mesh.scale.set(this.radius, this.radius, this.radius);
     });
+
+    this.onCollide = function (other)
+    {
+      this.material.color.setRGB(1, 0, 0);
+    };
   })
 
   .destruct(function ()

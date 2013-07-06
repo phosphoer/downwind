@@ -65,7 +65,7 @@ function main()
 
 
   var ocean = TANK.createEntity("Ocean");
-  ocean.Transform.position.y = -25;
+  ocean.Transform.position.y = -35;
   space.addEntity(ocean, "Ocean");
 
   var camera = TANK.createEntity("Transform", "Camera", "BoatCameraController");
