@@ -1,4 +1,5 @@
 "use strict";
+
 function main()
 {
   var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Gameplay");
@@ -13,7 +14,7 @@ function main()
 
 
   var ocean = TANK.createEntity("Ocean");
-  ocean.Transform.position.y = -20;
+  ocean.Transform.position.y = -25;
   space.addEntity(ocean, "Ocean");
 
   var camera = TANK.createEntity("Transform", "Camera", "BoatCameraController");

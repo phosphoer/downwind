@@ -9,10 +9,10 @@
   .construct(function ()
   {
     this.node = new THREE.Object3D();
-    this.cubeScale = 20;
-    this.patchSize = 15;
+    this.cubeScale = 30;
+    this.patchSize = 10;
     this.numPatches = 3;
-    this.speed = 0.4;
+    this.speed = 0.3;
     this.freq = 0.5;
     this.height = 2;
     this.totalSize = this.numPatches * this.patchSize * this.cubeScale;
@@ -27,10 +27,19 @@
     this.node.position = this.parent.Transform.position;
     g.scene.add(this.node);
 
+    var light = new global.THREE.HemisphereLight(0xCCFFFF, 0x2F4F8F, 0.5);
+    g.scene.add(light);
+
+    light = new global.THREE.PointLight(0xFFFFFF, 1, 300);
+    light.position.set(0, 30, 0);
+    g.scene.add(light);
+
     var mat = new global.THREE.MeshLambertMaterial(
     {
-      color: 0x101010
+      color: 0x1C6BA0
     });
+
+    var cubeGeometry = new global.THREE.CubeGeometry(1, 1, 1);
 
     for (var x = 0; x < this.numPatches; ++x)
     {
@@ -49,9 +58,7 @@
           patch.cubes[i] = {};
           for (var j = 0; j < this.patchSize; ++j)
           {
-            var color = new THREE.Color();
-            color.setRGB(x / (this.numPatches - 1), 0, z / (this.numPatches - 1));
-            patch.cubes[i][j] = new global.THREE.Mesh(g.unitCube, mat);
+            patch.cubes[i][j] = new global.THREE.Mesh(cubeGeometry, mat);
             patch.cubes[i][j].position = new THREE.Vector3(i * this.cubeScale, 0, j * this.cubeScale);
             patch.cubes[i][j].scale = new THREE.Vector3(this.cubeScale, this.cubeScale, this.cubeScale);
             patch.node.add(patch.cubes[i][j]);
