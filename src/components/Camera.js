@@ -8,7 +8,7 @@
 
   .construct(function ()
   {
-    self = this;
+    var self = this;
 
     var fov = 45;
     var aspect = global.innerWidth / global.innerHeight;
@@ -17,7 +17,7 @@
 
     self.yaw = 0;
     self.pitch = 45;
-    self.distance = 50;
+    self.distance = 100;
 
     self.target = "";
     self.shake = 0;
@@ -28,15 +28,15 @@
 
   .initialize(function ()
   {
-    self = this;
+    var self = this;
 
-    this.space.Graphics.scene.add(self.camera);
+    self.space.Graphics.scene.add(self.camera);
     self.camera.position = self.parent.Transform.position;
     self.camera.rotation = self.parent.Transform.rotation;
 
     self.addEventListener("OnEnterFrame", function ()
     {
-      var target = this.space.getEntity(self.target);
+      var target = self.space.getEntity(self.target);
 
       var toRad = function (angle)
       {
