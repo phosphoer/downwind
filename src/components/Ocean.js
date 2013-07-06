@@ -147,8 +147,8 @@
             for (var j = 0; j < this.patchSize; ++j)
             {
               var cube = patch.cubes[i][j];
-              cube.position.y = global.Math.cos(this.et * this.speedX + i * this.freqX) * this.heightX *
-                global.Math.sin(this.et * this.speedY + j * this.freqY) * this.heightY;
+              cube.position.y = global.Math.cos(this.et * this.speedX + (i + x * this.patchSize) * this.freqX) * this.heightX *
+                global.Math.sin(this.et * this.speedY + (j + z * this.patchSize) * this.freqY) * this.heightY;
             }
           }
         }
