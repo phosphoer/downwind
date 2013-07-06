@@ -16,17 +16,20 @@
     return boat;
   }
 
+  TANK.createCannon = function ()
+  {
+    var cannon = TANK.createEntity("Transform", "Model", "Cannon");
+    cannon.Model.model = Boat;
+    return cannon;
+  }
 
-  TANK.createCannonBall = function (transform)
+
+  TANK.createCannonBall = function (position, direction)
   {
     var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
-    if (typeof transform !== "undefined")
-    {
-      cannonBall.Transform.rotation = transform.rotation.clone();
-      cannonBall.Transform.position = transform.position.clone();
-    }
+    cannonBall.Transform.position = position.clone();
     cannonBall.Model.model = Boat;
-    cannonBall.CannonBall.setVelocity();
+    cannonBall.CannonBall.setVelocity(direction.clone());
     return cannonBall;
   }
 

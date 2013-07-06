@@ -5,27 +5,28 @@
 	TANK.registerComponent("Cannon")
 
 	.requires("Transform")
+	.requires("Model")
 
 	.construct(function ()
 	{
-		this.offset = new global.THREE.Vector3(0,0,0);
-		this.orientation = new global.THREE.Vector3(0,0,0);
 	})
 
 	.initialize(function ()
 	{
 		this.addEventListener("OnFiring", function (object)
 		{
-			if (object === this.parent)
+			if (object === this.parent.mother)
 			{
 				// fire a cannonball!
-				var t = this.parent.Transform;
-				var cannon = {position: t.position.clone(), rotation: t.rotation.clone()};
-				// add cannon specific positioning to the boat's transform
-				var offset = this.offset.clone();
-				cannon.position.add(offset);
-				cannon.rotation.copy(this.orientation);
-				this.space.addEntity(TANK.createCannonBall(cannon));
+				 var t = this.parent.Transform;
+
+				// // add cannon specific positioning to the boat's transform
+				// var worldOffset = t.pointLocalToWorld(this.offset);
+
+				// var direction = this.orientation;
+				// direction.add(t.getForward());
+
+				this.space.addEntity(TANK.createCannonBall(t.position, t.getForward()));
 			}
 		});
 
