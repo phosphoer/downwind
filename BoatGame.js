@@ -29,7 +29,7 @@ function main()
   var ocean = TANK.createEntity("Ocean");
   space.addEntity(ocean, "Ocean");
 
-  var camera = TANK.createEntity("Transform", "Camera");
+  var camera = TANK.createEntity("Transform", "Camera", "BoatCameraController");
   camera.Camera.target = "Boat";
   space.addEntity(camera, "Camera");
   camera.Camera.activate();
