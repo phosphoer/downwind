@@ -2,6 +2,21 @@
 {
 	"use strict";
 
+	TANK.createBoat = function()
+	{
+	  var boat = TANK.createEntity("Transform", "Model", "Boat", "Box", "Cannon");
+
+	  boat.Model.model = PirateShip;
+
+	  boat.Boat.forwardSpeed = 8.2;
+	  boat.Boat.backwardSpeed = 4.4;
+	  boat.Boat.turnSpeed = .02;
+	  boat.Boat.friction = .95;
+
+	  return boat;
+	}
+
+
 	TANK.createCannonBall = function()
 	{
 		var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
