@@ -11,6 +11,7 @@
 		this.left = 0;
 		this.right = 0;
 		this.forward = 0;
+		this.backward = 0;
 	})
 
 	.initialize(function ()
@@ -29,6 +30,10 @@
 			{
 				this.forward = 1;
 			}
+			else if (key === TANK.DOWN_ARROW || key === TANK.S)
+			{
+				this.backward = 1;
+			}
 
 		});
 
@@ -46,12 +51,16 @@
 			{
 				this.forward = 0;
 			}
+			else if (key === TANK.DOWN_ARROW || key === TANK.S)
+			{
+				this.backward = 0;
+			}
 		});
 
 		this.addEventListener("OnEnterFrame", function (dt)
 		{
 			this.parent.Boat.turn = this.left - this.right;
-			this.parent.Boat.throttle = this.forward ? true : false;
+			this.parent.Boat.throttle = this.forward - this.backward;
 		});
 	});
 

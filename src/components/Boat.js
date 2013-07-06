@@ -7,7 +7,9 @@
 	.construct(function ()
 	{
 		this.turn = 0;
-		this.throttle = false;
+		this.throttle = 0;
+		this.forwardAcceleration = 0;
+		this.backwardAcceleration = 0;
 		this.velocity = new THREE.Vector3();
 	})
 
@@ -18,14 +20,16 @@
 			var t = this.parent.Transform;
 			t.rotation.y += this.turn * dt;
 
-			if (this.throttle)
+			if (this.throttle != 0)
 			{
 				var facing = new global.THREE.Vector3(0, 0, 1);
 				var q = new global.THREE.Quaternion();
 				q.setFromEuler(t.rotation);
 				facing.applyQuaternion(q);
 				facing.normalize();
-				facing.multiplyScalar(this.acceleration * dt);
+
+				var accel = this.throttle > 0 ? this.forwardAcceleration : -this.backwardAcceleration;
+				facing.multiplyScalar(accel * dt);
 
 				this.velocity.addVectors(this.velocity, facing);
 			}
