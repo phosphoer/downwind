@@ -6,15 +6,18 @@ function main()
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
-  boat.addComponents("Skybox", "Controller", "Cannon", "Hierarchy", "Light");
-  boat.Cannon.offset = new THREE.Vector3(5, 2.5, 0);
-  boat.Cannon.orientation = new THREE.Vector3(0, THREE.PI, 0);
+  boat.addComponents("Skybox", "Controller", "Hierarchy", "Light");
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);
   boat.Skybox.scale.set(5000, 5000, 5000);
   boat.Light.offset.y = 20;
 
-  {
+  var starboardCannon = TANK.createCannon();
+  boat.Hierarchy.attachNonRelative(starboardCannon);
+  starboardCannon.Transform.position = new THREE.Vector3(0, 5, 0);
+  starboardCannon.Transform.rotation = new THREE.Vector3(0,THREE.PI * 1.5,0);
+
+{
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces");
     boat.Hierarchy.attachNonRelative(particles);
     particles.Transform.position.x = 40;
@@ -55,6 +58,7 @@ function main()
     particles.ParticleForces.randomForce.y = 0.4;
     particles.ParticleForces.randomForce.z = 0.4;
   }
+
 
   space.addEntity(boat, "Boat");
 
