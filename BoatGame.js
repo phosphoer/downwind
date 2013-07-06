@@ -5,7 +5,7 @@ function main()
   var space = TANK.createSpace("InputManager", "Graphics", "Stats");
   TANK.addSpace(space, "Game");
 
-  var boat = TANK.createEntity("Transform", "Skybox", "Model", "Boat", "Controller");
+  var boat = TANK.createEntity("Transform", "Skybox", "Model", "Boat", "Controller", "Cannon");
 
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);
@@ -18,6 +18,7 @@ function main()
   boat.Boat.friction = .95;
 
   space.addEntity(boat, "Boat");
+
 
   var ocean = TANK.createEntity("Ocean");
   //space.addEntity(ocean, "Ocean");
