@@ -1,60 +1,62 @@
 (function (global, TANK)
 {
-	"use strict";
+  "use strict";
 
-	TANK.registerComponent("Boat")
+  TANK.registerComponent("Boat")
 
-	.construct(function ()
-	{
-		this.turn = 0;
-		this.throttle = 0;
-		this.forwardSpeed = 0;
-		this.backwardSpeed = 0;
-		this.turnSpeed = 0;
-		this.velocity = new THREE.Vector3();
-		this.angularVelocity = 0;
-	})
+  .requires("Transform")
 
-	.initialize(function ()
-	{
-		this.addEventListener("OnEnterFrame", function (dt)
-		{
-			var t = this.parent.Transform;
+  .construct(function ()
+  {
+    this.turn = 0;
+    this.throttle = 0;
+    this.forwardSpeed = 0;
+    this.backwardSpeed = 0;
+    this.turnSpeed = 0;
+    this.velocity = new THREE.Vector3();
+    this.angularVelocity = 0;
+  })
 
-			if (this.throttle !== 0)
-			{
-				var facing = new global.THREE.Vector3(0, 0, 1);
-				var q = new global.THREE.Quaternion();
-				q.setFromEuler(t.rotation);
-				facing.applyQuaternion(q);
-				facing.normalize();
+  .initialize(function ()
+  {
+    this.addEventListener("OnEnterFrame", function (dt)
+    {
+      var t = this.parent.Transform;
 
-				var accel = this.throttle > 0 ? this.forwardSpeed : -this.backwardSpeed;
-				facing.multiplyScalar(accel * dt);
+      if (this.throttle !== 0)
+      {
+        var facing = new global.THREE.Vector3(0, 0, 1);
+        var q = new global.THREE.Quaternion();
+        q.setFromEuler(t.rotation);
+        facing.applyQuaternion(q);
+        facing.normalize();
 
-				this.velocity.addVectors(this.velocity, facing);
-			}
+        var accel = this.throttle > 0 ? this.forwardSpeed : -this.backwardSpeed;
+        facing.multiplyScalar(accel * dt);
 
-			// Apply linear friction
-			this.velocity.multiplyScalar(this.friction);
+        this.velocity.addVectors(this.velocity, facing);
+      }
 
-			// Integrate position
-			var vel = this.velocity.clone();
-			vel.multiplyScalar(dt);
-			t.position.addVectors(t.position, vel);
+      // Apply linear friction
+      this.velocity.multiplyScalar(this.friction);
 
-			if (this.turn !== 0)
-			{
-				this.angularVelocity += this.turnSpeed * this.turn * dt;
-			}
+      // Integrate position
+      var vel = this.velocity.clone();
+      vel.multiplyScalar(dt);
+      t.position.addVectors(t.position, vel);
 
-			// Apply angular friction
-			this.angularVelocity *= this.friction;
+      if (this.turn !== 0)
+      {
+        this.angularVelocity += this.turnSpeed * this.turn * dt;
+      }
 
-			t.rotation.y += this.angularVelocity * dt;
+      // Apply angular friction
+      this.angularVelocity *= this.friction;
 
-		});
-	});
+      t.rotation.y += this.angularVelocity * dt;
+
+    });
+  });
 
 }(this, this.TANK = this.TANK ||
 {}));
