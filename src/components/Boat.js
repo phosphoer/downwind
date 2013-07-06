@@ -13,7 +13,7 @@
     this.forwardSpeed = 0;
     this.backwardSpeed = 0;
     this.turnSpeed = 0;
-    this.velocity = new THREE.Vector3();
+    this.velocity = new global.THREE.Vector3();
     this.angularVelocity = 0;
   })
 
@@ -22,23 +22,20 @@
     this.addEventListener("OnEnterFrame", function (dt)
     {
       var t = this.parent.Transform;
+      var facing = t.getForward();
 
       if (this.throttle !== 0)
       {
-        var facing = new global.THREE.Vector3(0, 0, 1);
-        var q = new global.THREE.Quaternion();
-        q.setFromEuler(t.rotation);
-        facing.applyQuaternion(q);
-        facing.normalize();
-
         var accel = this.throttle > 0 ? this.forwardSpeed : -this.backwardSpeed;
-        facing.multiplyScalar(accel * dt);
-
-        this.velocity.addVectors(this.velocity, facing);
+        var force = facing.clone();
+        force.multiplyScalar(accel * dt);
+        this.velocity.addVectors(this.velocity, force);
       }
 
       // Apply linear friction
       this.velocity.multiplyScalar(this.friction);
+
+      var forwardForce = facing.dot(this.velocity);
 
       // Integrate position
       var vel = this.velocity.clone();
@@ -47,8 +44,10 @@
 
       if (this.turn !== 0)
       {
-        this.angularVelocity += this.turnSpeed * this.turn * dt;
+        this.angularVelocity += forwardForce * this.turnSpeed * this.turn * dt;
       }
+
+      t.rotation.z = -this.angularVelocity;
 
       // Apply angular friction
       this.angularVelocity *= this.friction;

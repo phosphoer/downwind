@@ -55,6 +55,10 @@
 			{
 				this.backward = 0;
 			}
+			else if (key === TANK.SPACE || key === TANK.F)
+			{
+				this.space.dispatchEvent("OnFiring", this.parent);
+			}
 		});
 
 		this.addEventListener("OnEnterFrame", function (dt)
