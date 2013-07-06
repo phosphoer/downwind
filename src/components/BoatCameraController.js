@@ -10,20 +10,26 @@
   {
     var self = this;
 
-    self.yawSensativity = 1;
-    self.pitchSensativity = 1;
-    self.zoomSensativity = 10;
-    self.smoothing = 0.9;
+    self.yawSensativity = 0.1;
+    self.pitchSensativity = -0.1;
+    self.zoomSensativity = 0.5;
   })
 
   .initialize(function ()
   {
     var self = this;
 
-    self.addEventListener("OnMouseMove", function (mouseEvent, keysHeld)
+    self.addEventListener("OnMouseMove", function (mouseEvent, keysHeld, mouseButtons)
     {
-      self.parent.Camera.yaw += mouseEvent.moveX * self.yawSensativity;
-      self.parent.Camera.pitch += mouseEvent.moveY * self.pitchSensativity;
+      if (mouseButtons[TANK.LEFT_MOUSE])
+      {
+        self.parent.Camera.yaw += mouseEvent.moveX * self.yawSensativity;
+        self.parent.Camera.pitch += mouseEvent.moveY * self.pitchSensativity;
+      }
+      if (mouseButtons[TANK.MIDDLE_MOUSE])
+      {
+        self.parent.Camera.distance += mouseEvent.moveY * self.zoomSensativity;
+      }
     });
   });
 
