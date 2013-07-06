@@ -8,7 +8,7 @@
 
   .initialize(function ()
   {
-    TANK.Game.Graphics.scene.fog = new global.THREE.FogExp2(0xffffff, 0.002);
+    this.space.Graphics.scene.fog = new global.THREE.FogExp2(0xffffff, 0.002);
   });
 
 

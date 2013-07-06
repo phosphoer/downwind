@@ -10,7 +10,7 @@
   {
     this.node = new THREE.Object3D();
     this.cubeScale = 50;
-    this.patchSize = 20;
+    this.patchSize = 15;
     this.numPatches = 3;
     this.speedX = 0.3;
     this.speedY = 0.4;
