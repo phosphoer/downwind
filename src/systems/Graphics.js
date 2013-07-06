@@ -22,7 +22,7 @@
 			antialias: true
 		});
 		this.renderer.setSize(global.innerWidth, global.innerHeight);
-		this.renderer.setClearColor(0xE3E3E3, 1);
+		this.renderer.setClearColor(0x101010, 1);
 		this.renderer.gammaInput = true;
 		this.renderer.gammaOutput = true;
 
