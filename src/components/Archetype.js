@@ -4,7 +4,7 @@
 
   TANK.createBoat = function ()
   {
-    var boat = TANK.createEntity("Transform", "Model", "Boat", "Box", "Cannon");
+    var boat = TANK.createEntity("Transform", "Model", "Boat", "Box");
 
     boat.Model.model = PirateShip;
 
@@ -16,16 +16,23 @@
     return boat;
   }
 
+  TANK.createCannon = function ()
+  {
+    var cannon = TANK.createEntity("Transform", "Model", "Cannon");
+    cannon.Model.model = Boat;
+    return cannon;
+  }
+
 
   TANK.createCannonBall = function (position, direction)
   {
     var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
-    cannonBall.Transform.position = position;
+    cannonBall.Transform.position = position.clone();
     cannonBall.Model.model = Boat;
     cannonBall.Model.model.sizeX = 10;
     cannonBall.Model.model.sizeY = 10;
     cannonBall.Model.model.sizeZ = 10;
-    cannonBall.CannonBall.setVelocity(direction);
+    cannonBall.CannonBall.setVelocity(direction.clone());
     return cannonBall;
   }
 
