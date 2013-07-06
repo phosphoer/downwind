@@ -29,7 +29,7 @@
 		cannonBall.Model.model.sizeX = 10;
 		cannonBall.Model.model.sizeY = 10;
 		cannonBall.Model.model.sizeZ = 10;
-		cannonBall.CannonBall.setVelocity(new global.THREE.Vector3(1, 0, 0));
+		cannonBall.CannonBall.setVelocity();
 		return cannonBall;
 	}
 

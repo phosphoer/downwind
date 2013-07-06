@@ -18,6 +18,10 @@
 			{
 				speed = this.defaultSpeed;
 			}
+			if (typeof orientation === "undefined")
+			{
+				orientation = this.parent.Transform.getFacing();
+			}
 			// make the velocity incorporate the positioning
 			this.velocity.copy(orientation);
 			this.velocity.multiplyScalar(speed);

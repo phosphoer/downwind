@@ -5,7 +5,8 @@ function main()
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
-  boat.addComponents("Skybox", "Controller");
+  boat.addComponents("Skybox", "Controller", "Cannon");
+  boat.Cannon.linkTransform(boat.Transform);
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);
   boat.Skybox.scale.set(5000, 5000, 5000);
