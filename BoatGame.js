@@ -2,9 +2,13 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager");
+  var space = TANK.createSpace("InputManager", "Graphics");
   TANK.addSpace(space, "Game");
-  space.addComponent("Graphics");
+
+  var boat = TANK.createEntity();
+  boat.addComponents("Transform");
+  space.addEntity(boat, "Boat");
 
   TANK.start();
+
 }
