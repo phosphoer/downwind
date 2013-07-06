@@ -15,7 +15,10 @@
     var near = 0.1;
     var far = 10000;
 
-    self.offset = global.THREE.Vector3(0, 20, 20);
+    self.yaw = 0;
+    self.pitch = 45;
+    self.distance = 50;
+
     self.target = "";
     self.shake = 0;
     self.shakeDamping = 0.95;
@@ -27,24 +30,34 @@
   {
     self = this;
 
-    TANK.Graphics.scene.add(self.camera);
+    this.space.Graphics.scene.add(self.camera);
     self.camera.position = self.parent.Transform.position;
     self.camera.rotation = self.parent.Transform.rotation;
 
     self.addEventListener("OnEnterFrame", function ()
     {
-      var target = TANK.getEntity(self.target);
+      var target = this.space.getEntity(self.target);
 
-      self.camera.position.addVectors(target.parent.Transform.position, self.offset);
+      var toRad = function (angle)
+      {
+        return angle * (Math.PI / 180);
+      }
+
+      var offsetX = self.distance * global.Math.sin(toRad(self.pitch)) * global.Math.cos(toRad(self.yaw));
+      var offsetY = self.distance * global.Math.cos(toRad(self.pitch));
+      var offsetZ = self.distance * global.Math.sin(toRad(self.pitch)) * global.Math.sin(toRad(self.yaw));
 
       var generateShake = function ()
       {
-        return (Math.random() - 0.5) * self.shake;
+        return (global.Math.random() - 0.5) * self.shake;
       };
 
-      self.camera.position.x += generateShake();
-      self.camera.position.y += generateShake();
-      self.camera.position.z += generateShake();
+      self.camera.position.copy(target.Transform.position);
+
+      self.camera.position.x += offsetX + generateShake();
+      self.camera.position.y += offsetY + generateShake();
+      self.camera.position.z += offsetZ + generateShake();
+      self.camera.lookAt(target.Transform.position);
 
       self.shake *= self.shakeDamping;
     });
@@ -58,7 +71,7 @@
 
     self.activate = function ()
     {
-      TANK.Graphics.camera = self.camera;
+      this.space.Graphics.camera = self.camera;
     };
   });
 
