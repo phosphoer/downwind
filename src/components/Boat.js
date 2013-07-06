@@ -8,7 +8,7 @@
 	{
 		this.turn = 0;
 		this.throttle = false;
-		this.speed = .2;
+		this.velocity = new THREE.Vector3();
 	})
 
 	.initialize(function ()
@@ -18,14 +18,25 @@
 			var t = this.parent.Transform;
 			t.rotation.y += this.turn * dt;
 
-			var facing = new global.THREE.Vector3(0, 0, 1);
-			var q = new global.THREE.Quaternion();
-			q.setFromEuler(t.rotation);
-			q.multiplyVector3(facing);
-			facing.normalize();
-			facing.multiplyScalar(this.speed);
+			if (this.throttle)
+			{
+				var facing = new global.THREE.Vector3(0, 0, 1);
+				var q = new global.THREE.Quaternion();
+				q.setFromEuler(t.rotation);
+				facing.applyQuaternion(q);
+				facing.normalize();
+				facing.multiplyScalar(this.acceleration * dt);
 
-			t.position.addVectors(t.position, facing);
+				this.velocity.addVectors(this.velocity, facing);
+			}
+
+			// Apply linear friction
+			this.velocity.multiplyScalar(this.friction);
+
+			// Integrate position
+			var vel = this.velocity.clone();
+			vel.multiplyScalar(dt);
+			t.position.addVectors(t.position, vel);
 		});
 	});
 

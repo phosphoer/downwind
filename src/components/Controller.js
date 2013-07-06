@@ -10,6 +10,7 @@
 	{
 		this.left = 0;
 		this.right = 0;
+		this.forward = 0;
 	})
 
 	.initialize(function ()
@@ -24,6 +25,10 @@
 			{
 				this.right = 1;
 			}
+			else if (key === TANK.UP_ARROW || key === TANK.W)
+			{
+				this.forward = 1;
+			}
 
 		});
 
@@ -37,11 +42,16 @@
 			{
 				this.right = 0;
 			}
+			else if (key === TANK.UP_ARROW || key === TANK.W)
+			{
+				this.forward = 0;
+			}
 		});
 
 		this.addEventListener("OnEnterFrame", function (dt)
 		{
 			this.parent.Boat.turn = this.left - this.right;
+			this.parent.Boat.throttle = this.forward ? true : false;
 		});
 	});
 
