@@ -1,38 +1,38 @@
 (function (global, TANK)
 {
-	"use strict";
+  "use strict";
 
-	TANK.registerComponent("Cannon")
+  TANK.registerComponent("Cannon")
 
-	.requires("Transform")
-	.requires("Model")
+  .requires("Transform")
+    .requires("Model")
 
-	.construct(function ()
-	{
-	})
+  .construct(function () {})
 
-	.initialize(function ()
-	{
-		this.addEventListener("OnFiring", function (object)
-		{
-			if (object === this.parent.mother)
-			{
-				// fire a cannonball!
-				 var t = this.parent.Transform;
+  .initialize(function ()
+  {
+    this.addEventListener("OnFiring", function (object)
+    {
+      if (object === this.parent.mother)
+      {
+        // fire a cannonball!
+        var t = this.parent.Transform;
 
-				// // add cannon specific positioning to the boat's transform
-				// var worldOffset = t.pointLocalToWorld(this.offset);
+        // // add cannon specific positioning to the boat's transform
+        // var worldOffset = t.pointLocalToWorld(this.offset);
 
-				// var direction = this.orientation;
-				// direction.add(t.getForward());
+        // var direction = this.orientation;
+        // direction.add(t.getForward());
 
-				this.space.addEntity(TANK.createCannonBall(t.position, t.getForward()));
-			}
-		});
+        var forward = new global.THREE.Vector3();
+        t.getForward(forward);
+
+        this.space.addEntity(TANK.createCannonBall(t.position, forward));
+      }
+    });
 
 
-	});
+  });
 
 }(this, this.TANK = this.TANK ||
 {}));
-		
