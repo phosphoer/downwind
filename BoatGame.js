@@ -3,7 +3,7 @@
 function main()
 {
   var space = TANK.createSpace("InputManager");
-  TANK.addspace(space, "Game");
+  TANK.addSpace(space, "Game");
 
   TANK.start();
 }
