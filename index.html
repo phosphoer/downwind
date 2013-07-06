@@ -13,57 +13,57 @@
     <script src="lib/stats.min.js"></script>
     <script src="lib/three.min.js"></script>
 
-    <script src="src/utility/VoxelMeshBuilder.js"></script>
     <script src="src/utility/Gradient.js"></script>
-
     <script src="src/components/Archetype.js"></script>
-    <script src="src/components/Wander.js"></script>
     <script src="src/components/Boat.js"></script>
-    <script src="src/components/Controller.js"></script>
-    <script src="src/components/Model.js"></script>
-    <script src="src/components/Skybox.js"></script>
-    <script src="src/components/Box.js"></script>
-    <script src="src/components/Light.js"></script>
-    <script src="src/components/Ocean.js"></script>
-    <script src="src/components/Transform.js"></script>
-    <script src="src/systems/Stats.js"></script>
-    <script src="src/components/Float.js"></script>
-    <script src="src/components/CannonBall.js"></script>
-    <script src="src/components/Cannon.js"></script>
-    <script src="src/components/Camera.js"></script>
-    <script src="src/components/Hierarchy.js"></script>
     <script src="src/components/BoatCameraController.js"></script>
+    <script src="src/components/Camera.js"></script>
+    <script src="src/components/Cannon.js"></script>
+    <script src="src/components/CannonBall.js"></script>
+    <script src="src/components/Controller.js"></script>
+    <script src="src/components/Float.js"></script>
+    <script src="src/components/Light.js"></script>
+    <script src="src/components/Model.js"></script>
+    <script src="src/components/ModelCollider.js"></script>
+    <script src="src/components/Ocean.js"></script>
+    <script src="src/components/Hierarchy.js"></script>
     <script src="src/components/ParticleEmitter.js"></script>
     <script src="src/components/ParticleForces.js"></script>
+    <script src="src/components/Skybox.js"></script>
     <script src="src/components/ParticleGradient.js"></script>
-    <script src="src/systems/Graphics.js"></script>
+    <script src="src/components/Transform.js"></script>
     <script src="src/systems/Fog.js"></script>
+    <script src="src/components/Wander.js"></script>
     <script src="src/systems/Gameplay.js"></script>
+    <script src="src/systems/Graphics.js"></script>
+    <script src="src/systems/Physics.js"></script>
+    <script src="src/systems/Stats.js"></script>
+    <script src="src/utility/VoxelMeshBuilder.js"></script>
 
     <script src="BoatGame.js"></script>
 
     <script src="res/js/PirateShip.js"></script>
     <script src="res/js/Boat.js"></script>
 
+    <style>
+      body
+      {
+        margin: 0px;
+        overflow: hidden;
+      }
+
+      canvas
+      {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
   </head>
-
-  <style>
-    body
-    {
-      margin: 0px;
-      overflow: hidden;
-    }
-
-    canvas
-    {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
 
   <body>
     <script type="text/javascript">
-    this.addEventListener("load", main);
+    this.addEventListener("load", this.main);
     </script>
 
   </body>
