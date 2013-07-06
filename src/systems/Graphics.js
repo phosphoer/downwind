@@ -10,7 +10,7 @@
 	{
 		this.scene = new global.THREE.Scene();
 
-		var fov = 45,
+		var fov = 60,
 			aspect = global.innerWidth / global.innerHeight,
 			near = 0.1,
 			far = 10000;
@@ -31,7 +31,7 @@
 
 		this.container.appendChild(this.renderer.domElement);
 
-		this.camera.position.set(0, 100, 34);
+		this.camera.position.set(0, 40, 50);
 		this.camera.lookAt(this.scene.position);
 
 		this.cameraDir = this.camera.position.clone();

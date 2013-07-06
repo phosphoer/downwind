@@ -7,9 +7,9 @@ function main()
 
     var boat = TANK.createEntity();
     boat.addComponents("Transform", "Box");
-    boat.Box.diffuse.setRGB(.9, .9, .9);
-    boat.Transform.scale.set(10, 10, 10);
-    boat.Transform.rotation.set(Math.random(), Math.random(), Math.random());
+    boat.Box.diffuse.setRGB(0.9, 0.9, 0.9);
+    boat.Transform.scale.set(10, 10, 20);
+    //boat.Transform.rotation.set(Math.random(), Math.random(), Math.random());
     space.addEntity(boat, "Boat");
 
     TANK.start();
