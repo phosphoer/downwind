@@ -14,10 +14,10 @@ function main()
 
   var starboardCannon = TANK.createCannon();
   boat.Hierarchy.attachNonRelative(starboardCannon);
-  starboardCannon.Transform.position = new THREE.Vector3(0, 5, 0);
-  starboardCannon.Transform.rotation = new THREE.Vector3(0,THREE.PI * 1.5,0);
+  starboardCannon.Transform.position.y = 5;
+  starboardCannon.Transform.rotation.y = Math.PI * 0.5;
 
-{
+  {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
     boat.Hierarchy.attachNonRelative(particles);
     particles.Transform.position.y = -5;
