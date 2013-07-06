@@ -187,7 +187,7 @@
     var camera = TANK.Game.getEntity("Boat");
     var camPos = camera.Transform.position;
     var myPos = this.parent.Transform.position;
-    var oceanHeight = this.getHeight(camPos.x, camPos.z) + this.cubeScale - 5;
+    var oceanHeight = this.getHeight(camPos.x, camPos.z);
 
     camPos.y += (oceanHeight - camPos.y) * 0.05;
 
