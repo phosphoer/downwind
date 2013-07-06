@@ -9,8 +9,8 @@
   .construct(function ()
   {
     this.node = new THREE.Object3D();
-    this.cubeScale = 10;
-    this.patchSize = 5;
+    this.cubeScale = 20;
+    this.patchSize = 15;
     this.numPatches = 3;
     this.totalSize = this.numPatches * this.patchSize * this.cubeScale;
     this.patches = {};
@@ -128,8 +128,6 @@
     var camera = TANK.Game.getEntity("Boat");
     var camPos = camera.Transform.position;
     var myPos = this.parent.Transform.position;
-    // camPos.x += dt * 2;
-    // camPos.z -= dt * 2;
 
     myPos.x = -this.numPatches * this.patchSize * this.cubeScale * 0.5;
     myPos.z = -this.numPatches * this.patchSize * this.cubeScale * 0.5;
