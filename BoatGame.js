@@ -17,11 +17,11 @@ function main()
   starboardCannon.Transform.position.y = 5;
   starboardCannon.Transform.rotation.y = Math.PI * 0.5;
 
-{  {
+  {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
     boat.Hierarchy.attachNonRelative(particles);
-    particles.Transform.position.y = -5;
-    particles.Transform.position.z = -5;
+    particles.Transform.position.y = -15;
+    particles.Transform.position.z = -2;
     particles.ParticleEmitter.emitCount = 0;
     particles.ParticleEmitter.emitRate = 30;
     particles.ParticleEmitter.color.setRGB(1, 0, 0);
