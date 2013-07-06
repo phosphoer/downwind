@@ -2,7 +2,7 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Stats", "Gameplay");
+  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Physics", "Stats", "Gameplay");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
@@ -17,7 +17,7 @@ function main()
   starboardCannon.Transform.position.y = 5;
   starboardCannon.Transform.rotation.y = Math.PI * 0.5;
 
-  {
+{  {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
     boat.Hierarchy.attachNonRelative(particles);
     particles.Transform.position.y = -5;
@@ -44,12 +44,11 @@ function main()
     particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
   }
 
-
   space.addEntity(boat, "Boat");
 
 
   var ocean = TANK.createEntity("Ocean");
-  ocean.Transform.position.y = -25;
+  ocean.Transform.position.y = -35;
   space.addEntity(ocean, "Ocean");
 
   var camera = TANK.createEntity("Transform", "Camera", "BoatCameraController");

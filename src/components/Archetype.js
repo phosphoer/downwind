@@ -4,13 +4,14 @@
 
   TANK.createBoat = function ()
   {
-    var boat = TANK.createEntity("Transform", "Model", "Boat", "Box");
+    var boat = TANK.createEntity("Transform", "Model", "Boat", "ModelCollider", "Cannon");
 
+    boat.ModelCollider.debugDraw = false;
     boat.Model.model = PirateShip;
 
-    boat.Boat.forwardSpeed = 8.2;
+    boat.Boat.forwardSpeed = 12.2;
     boat.Boat.backwardSpeed = 4.4;
-    boat.Boat.turnSpeed = .02;
+    boat.Boat.turnSpeed = .01;
     boat.Boat.friction = .95;
 
     return boat;
@@ -29,9 +30,6 @@
     var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
     cannonBall.Transform.position.copy(position);
     cannonBall.Model.model = Boat;
-    cannonBall.Model.model.sizeX = 10;
-    cannonBall.Model.model.sizeY = 10;
-    cannonBall.Model.model.sizeZ = 10;
     cannonBall.CannonBall.setVelocity(direction.clone());
     return cannonBall;
   }
