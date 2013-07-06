@@ -9,8 +9,8 @@
     .construct(function ()
     {
         this.angle = 0.0;
-        this.waveHeight = 0.25;
-        this.intervalLength = 6;
+        this.waveHeight = 0.25;  // how dramatic the y-value change is
+        this.intervalLength = 6; // how quickly it happens, the higher the number the slower it is
         this.timer = 0;
     })
 
@@ -21,7 +21,7 @@
             this.timer += 1;
             if (this.timer >= this.intervalLength)
             {
-                this.parent.Transform.position.y += Math.sin(this.angle) * this.waveHeight;
+                this.parent.Transform.position.y += global.Math.sin(this.angle) * this.waveHeight;
                 this.angle += 0.1;
                 this.timer -= this.intervalLength;
             }

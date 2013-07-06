@@ -1,0 +1,37 @@
+(function (global, TANK)
+{
+	"use strict";
+
+	TANK.createBoat = function()
+	{
+	  var boat = TANK.createEntity("Transform", "Model", "Boat", "Box");
+
+	  boat.Model.model = PirateShip;
+
+	  boat.Boat.forwardSpeed = 8.2;
+	  boat.Boat.backwardSpeed = 4.4;
+	  boat.Boat.turnSpeed = .02;
+	  boat.Boat.friction = .95;
+
+	  return boat;
+	}
+
+
+	TANK.createCannonBall = function(transform)
+	{
+		var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
+		if (typeof transform !== "undefined")
+		{	
+			cannonBall.Transform.rotation = transform.rotation.clone();
+			cannonBall.Transform.position = transform.position.clone();
+		}
+		cannonBall.Model.model = Boat;
+		cannonBall.Model.model.sizeX = 10;
+		cannonBall.Model.model.sizeY = 10;
+		cannonBall.Model.model.sizeZ = 10;
+		cannonBall.CannonBall.setVelocity(new global.THREE.Vector3(1, 0, 0));
+		return cannonBall;
+	}
+
+}(this, this.TANK = this.TANK ||
+{}));

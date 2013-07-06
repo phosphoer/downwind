@@ -12,7 +12,7 @@
     {
       for (j = 0; j <= 1; ++j)
       {
-        var boat = global.createBoat();
+        var boat = TANK.createBoat();
         boat.addComponents("Wander");
         boat.Model.materialDiffuse = 0x404040;
         boat.Transform.position.set(i * scale, 0, j * scale);
