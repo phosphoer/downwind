@@ -26,8 +26,8 @@
 		this.renderer.gammaInput = true;
 		this.renderer.gammaOutput = true;
 
-		this.container = document.createElement('div');
-		document.body.appendChild(this.container);
+		this.container = global.document.createElement('div');
+		global.document.body.appendChild(this.container);
 
 		this.container.appendChild(this.renderer.domElement);
 
@@ -40,17 +40,36 @@
 
 		this.unitCube = new global.THREE.CubeGeometry(1, 1, 1);
 
-		TANK.addEventListener("OnEnterFrame", this);
-
-		global.addEventListener('DOMMouseScroll', wheel, false);
-
 		var that = this;
+		this.addEventListener("OnEnterFrame", function (dt)
+		{
+			this.scene.updateMatrixWorld();
+
+			var self = this;
+			this.scene.traverse(function (object)
+			{
+				if (object instanceof global.THREE.LOD)
+				{
+					object.update(self.camera);
+
+					for (var i = 0; i < object.children.length; ++i)
+					{
+						object.children[i].traverse(function (child)
+						{
+							child.visible = object.children[i].visible;
+						});
+					}
+				}
+			});
+			this.renderer.render(this.scene, this.camera);
+		});
+
 		global.onresize = function (event)
 		{
 			that.camera.aspect = global.innerWidth / global.innerHeight;
 			that.camera.updateProjectionMatrix();
 			that.renderer.setSize(global.innerWidth, global.innerHeight);
-		} * /
+		};
 	});
 
 
