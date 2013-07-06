@@ -34,12 +34,6 @@
       return this.vectorLocalToWorld(forwardConstant);
     };
 
-
-    this.buildToWorldMatrix = function (matrix4)
-    {
-      matrix4.makeFromPositionEulerScale(this.position, this.rotation, 'XYZ', this.scale);
-    };
-
     this.vectorLocalToWorld = function (vector3)
     {
       return this.localToWorld(vector3, 0.0);
@@ -58,6 +52,23 @@
     this.pointWorldToLocal = function (vector3)
     {
       return this.worldToLocal(vector3, 1.0);
+    };
+
+    this.buildToWorldMatrix = function (matrix4)
+    {
+      matrix4.makeFromPositionEulerScale(this.position, this.rotation, 'XYZ', this.scale);
+
+      // Check if we have a hierarchy mother
+      var mother = this.parent.mother;
+      if (mother)
+      {
+        var motherTx = mother.Transform;
+        if (motherTx)
+        {
+          motherTx.buildToWorldMatrix(motherTx.toWorldCache);
+          matrix4.multiplyMatrices(motherTx.toWorldCache, matrix4);
+        }
+      }
     };
 
     this.localToWorld = function (vector3, w)

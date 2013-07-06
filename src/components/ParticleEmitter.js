@@ -26,6 +26,9 @@
     self.linearVelocity = new global.THREE.Vector3(0, 0, 0);
     self.randomVelocity = new global.THREE.Vector3(1, 1, 1);
 
+
+    self.spawnAreaCache = new global.THREE.Vector3();
+
     self.color = new global.THREE.Color();
   })
 
@@ -42,7 +45,7 @@
 
     self.material = new global.THREE.MeshBasicMaterial(
     {
-      color: self.color,
+      color: self.color
     });
 
 
@@ -62,6 +65,8 @@
 
       self.emitTime += dt;
 
+      var worldOffset = null;
+
       // If we have no emit count, or we're below our emit count (and we have enough time to emit a particle!)
       while ((self.emitCount == 0 || self.particlesEmitted < self.emitCount) && self.emitTime > singleEmitTime)
       {
@@ -69,9 +74,18 @@
 
         var particle = new global.THREE.Mesh(g.unitCube, self.material);
 
-        particle.position.x = TANK.Math.variance(tx.position.x, self.spawnArea.x) + self.offset.x;
-        particle.position.y = TANK.Math.variance(tx.position.y, self.spawnArea.y) + self.offset.y;
-        particle.position.z = TANK.Math.variance(tx.position.z, self.spawnArea.z) + self.offset.z;
+        self.spawnAreaCache.x = TANK.Math.variance(0, self.spawnArea.x);
+        self.spawnAreaCache.y = TANK.Math.variance(0, self.spawnArea.y);
+        self.spawnAreaCache.z = TANK.Math.variance(0, self.spawnArea.z);
+
+        // We lazy compute the offset once, to avoid allocations
+        if (worldOffset == null)
+        {
+          worldOffset = tx.pointLocalToWorld(self.offset);
+          var worldSpawnArea = tx.vectorLocalToWorld(self.spawnAreaCache);
+        }
+
+        particle.position.addVectors(worldOffset, worldSpawnArea);
 
         particle._life = 0;
         particle._lifetime = TANK.Math.variance(self.lifetime, self.lifetimeVariance);
