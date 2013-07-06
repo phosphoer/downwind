@@ -107,15 +107,15 @@
     {
       for (var i = 0; i < this.numPatches; ++i)
       {
-        var fromPatch = this.patches[i][this.numPatches - 1];
+        var fromPatch = this.patches[i][0];
 
-        for (var j = this.numPatches - 1; j > 0; --j)
+        for (var j = 0; j < this.numPatches - 1; ++j)
         {
-          this.patches[i][j] = this.patches[i][j - 1];
+          this.patches[i][j] = this.patches[i][j + 1];
         }
 
-        this.patches[i][0] = fromPatch;
-        fromPatch.node.position.z -= this.numPatches * this.patchSize * this.cubeScale;
+        this.patches[i][this.numPatches - 1] = fromPatch;
+        fromPatch.node.position.z += this.numPatches * this.patchSize * this.cubeScale;
       }
     }
 
@@ -140,6 +140,8 @@
       this.scrollRight();
     if (camPos.z - myPos.z < this.patches[0][this.numPatches - 1].node.position.z - this.patchSize * this.cubeScale)
       this.scrollUp();
+    if (camPos.z - myPos.z > this.patches[0][0].node.position.z + 2 * this.patchSize * this.cubeScale)
+      this.scrollDown();
   }
 
 }(this, this.TANK = this.TANK ||
