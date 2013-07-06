@@ -1,22 +1,29 @@
 "use strict";
 
-function main()
+function createBoat()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Stats");
-  TANK.addSpace(space, "Game");
+  var boat = TANK.createEntity("Transform", "Model", "Boat", "Box");
 
-  var boat = TANK.createEntity("Transform", "Skybox", "Model", "Boat", "Controller");
-
-  boat.Skybox.skyColor.setHex(0xCCFFFF);
-  boat.Skybox.baseColor.setHex(0x2F4F8F);
-  boat.Skybox.scale.set(5000, 5000, 5000);
   boat.Model.model = PirateShip;
 
   boat.Boat.forwardSpeed = 8.2;
   boat.Boat.backwardSpeed = 4.4;
-  boat.Boat.turnSpeed = .7;
+  boat.Boat.turnSpeed = .02;
   boat.Boat.friction = .95;
 
+  return boat;
+}
+
+function main()
+{
+  var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Gameplay");
+  TANK.addSpace(space, "Game");
+
+  var boat = createBoat();
+  boat.addComponents("Skybox", "Controller");
+  boat.Skybox.skyColor.setHex(0xCCFFFF);
+  boat.Skybox.baseColor.setHex(0x2F4F8F);
+  boat.Skybox.scale.set(5000, 5000, 5000);
   space.addEntity(boat, "Boat");
 
   var ocean = TANK.createEntity("Ocean");

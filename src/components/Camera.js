@@ -17,7 +17,7 @@
 
     self.yaw = 0;
     self.pitch = 45;
-    self.distance = 50;
+    self.distance = 100;
 
     self.target = "";
     self.shake = 0;
