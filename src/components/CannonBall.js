@@ -35,6 +35,11 @@
 		{
 			var t = this.parent.Transform;
 
+			// offset to center of model
+			// t.position.add(-this.parent.Model.model.sizeX * 0.5, 
+			// 	           -this.parent.Model.model.sizeY * 0.5,
+			// 	           0);
+
 			// Integrate position
 			var vel = this.velocity.clone();
 			vel.multiplyScalar(dt);
