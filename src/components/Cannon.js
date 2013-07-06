@@ -22,9 +22,7 @@
 				var t = this.parent.Transform;
 				var cannon = {position: t.position.clone(), rotation: t.rotation.clone()};
 				// add cannon specific positioning to the boat's transform
-				var rot = t.getRotationMatrix();
 				var offset = this.offset.clone();
-				offset.applyMatrix4(rot);
 				cannon.position.add(offset);
 				cannon.rotation.copy(this.orientation);
 				this.space.addEntity(TANK.createCannonBall(cannon));
