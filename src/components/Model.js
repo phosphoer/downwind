@@ -18,7 +18,6 @@
     {
         var i;
         var model = this.model;
-        console.log(this);
         this.sizeX = model.sizeX;
         this.sizeY = model.sizeY;
         this.sizeZ = model.sizeZ;
