@@ -2,7 +2,7 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Gameplay", "Physics");
+  var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Physics", "Gameplay");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
@@ -32,7 +32,6 @@ function main()
   */
 
   space.addEntity(boat, "Boat");
-
 
   var ocean = TANK.createEntity("Ocean");
   ocean.Transform.position.y = -25;

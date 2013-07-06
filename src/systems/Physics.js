@@ -6,17 +6,43 @@
 
 	.initialize(function ()
 	{
-		this.world = new CANNON.World();
+		this.colliders = {};
 
-		var solver = new CANNON.GSSolver();
-		solver.iterations = 7;
-		solver.tolerance = 0.1;
-		this.world.solver = solver;
+		this.addEventListener("OnEnterFrame", function (dt)
+		{
+			var colliders = [];
+			for (var c in this.colliders)
+			{
+				if (this.colliders.hasOwnProperty(c))
+				{
+					colliders.push(this.colliders[c]);
+				}
+			}
 
-		this.world.gravity.set(0, 0, 0);
-		this.world.broadphase = new CANNON.NaiveBroadphase();
+			var i, j, a, b;
+			for (i = 0; i < colliders.length; ++i)
+			{
+				for (j = i + 1; j < colliders.length; ++j)
+				{
+					a = colliders[i];
+					b = colliders[j];
 
+					if (isColliding(a, b))
+					{
+						a.material.color.setRGB(1, 0, 0);
+						b.material.color.setRGB(1, 0, 0);
+					}
+				}
+			}
+
+		});
 	});
+
+	function isColliding(a, b)
+	{
+		var d = a.position.distanceTo(b.position);
+		return d < a.radius + b.radius;
+	}
 
 }(this, this.TANK = this.TANK ||
 {}));
