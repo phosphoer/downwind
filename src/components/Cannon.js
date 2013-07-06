@@ -17,7 +17,7 @@
 			if (key === TANK.SPACE || key === TANK.F)
 			{
 				// fire a cannonball!
-				this.space.addEntity(TANK.createCannonBall());
+				this.space.addEntity(TANK.createCannonBall(this.parent.Transform));
 			}
 		});
 
