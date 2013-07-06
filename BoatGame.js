@@ -8,12 +8,12 @@ function main()
   var boat = TANK.createBoat();
   boat.addComponents("Skybox", "Controller", "ParticleEmitter", "ParticleForces", "Cannon");
   boat.Cannon.offset = new THREE.Vector3(5, 2.5, 0);
-  boat.Cannon.orientation = new THREE.Vector3(0,THREE.PI,0);
+  boat.Cannon.orientation = new THREE.Vector3(0, THREE.PI, 0);
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);
   boat.Skybox.scale.set(5000, 5000, 5000);
   boat.ParticleEmitter.emitCount = 0;
-  boat.ParticleEmitter.emitRate = 100;
+  boat.ParticleEmitter.emitRate = 1;
   boat.ParticleEmitter.color.setRGB(1, 0, 0);
   boat.ParticleEmitter.randomVelocity.x = 0.1;
   boat.ParticleEmitter.randomVelocity.y = 0.1;

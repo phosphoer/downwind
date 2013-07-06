@@ -9,13 +9,13 @@
   .construct(function ()
   {
     this.node = new THREE.Object3D();
-    this.cubeScale = 30;
+    this.cubeScale = 50;
     this.patchSize = 20;
     this.numPatches = 3;
     this.speedX = 0.3;
     this.speedY = 0.4;
-    this.freqX = 0.5;
-    this.freqY = 0.4;
+    this.freqX = 0.01;
+    this.freqY = 0.01;
     this.heightX = 2;
     this.heightY = 2.5;
     this.totalSize = this.numPatches * this.patchSize * this.cubeScale;
@@ -59,7 +59,7 @@
           {
             patch.cubes[i][j] = new global.THREE.Mesh(cubeGeometry, mat);
             patch.cubes[i][j].position = new THREE.Vector3(i * this.cubeScale, 0, j * this.cubeScale);
-            patch.cubes[i][j].scale = new THREE.Vector3(this.cubeScale, this.cubeScale, this.cubeScale);
+            patch.cubes[i][j].scale = new THREE.Vector3(this.cubeScale, 30, this.cubeScale);
             patch.node.add(patch.cubes[i][j]);
           }
         }
@@ -137,6 +137,7 @@
     {
       this.et += dt;
 
+      var cubePos = new THREE.Vector3(0, 0, 0);
       for (var x = 0; x < this.numPatches; ++x)
       {
         for (var z = 0; z < this.numPatches; ++z)
@@ -147,8 +148,10 @@
             for (var j = 0; j < this.patchSize; ++j)
             {
               var cube = patch.cubes[i][j];
-              cube.position.y = global.Math.cos(this.et * this.speedX + (i + x * this.patchSize) * this.freqX) * this.heightX *
-                global.Math.sin(this.et * this.speedY + (j + z * this.patchSize) * this.freqY) * this.heightY;
+              cubePos.x = cube.position.x + patch.node.position.x + this.node.position.x;
+              cubePos.z = cube.position.z + patch.node.position.z + this.node.position.z;
+              cube.position.y = global.Math.cos(this.et * this.speedX + cubePos.x * this.freqX) * this.heightX *
+                global.Math.sin(this.et * this.speedY + cubePos.z * this.freqY) * this.heightY;
             }
           }
         }
