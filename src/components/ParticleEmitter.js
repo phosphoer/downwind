@@ -43,6 +43,8 @@
 
     self.particles = new Array();
 
+    self.recycled = new Array();
+
     self.material = new global.THREE.MeshBasicMaterial(
     {
       color: self.color
@@ -72,7 +74,16 @@
       {
         self.emitTime -= singleEmitTime;
 
-        var particle = new global.THREE.Mesh(g.unitCube, self.material);
+        var particle = null;
+
+        //if (self.recycled.length == 0)
+        {
+          particle = new global.THREE.Mesh(g.unitCube, self.material);
+        }
+        //else
+        {
+          //particle = self.recycled.pop();
+        }
 
         self.spawnAreaCache.x = TANK.Math.variance(0, self.spawnArea.x);
         self.spawnAreaCache.y = TANK.Math.variance(0, self.spawnArea.y);
@@ -86,7 +97,9 @@
         }
 
         particle.position.addVectors(worldOffset, worldSpawnArea);
-
+        particle.scale.x = 1;
+        particle.scale.y = 1;
+        particle.scale.z = 1;
         particle._life = 0;
         particle._lifetime = TANK.Math.variance(self.lifetime, self.lifetimeVariance);
         particle._velocity = self.linearVelocity.clone();
@@ -113,6 +126,8 @@
           // Remove the particle from the list
           self.particles.splice(i, 1);
           g.scene.remove(particle);
+
+          self.recycled.push(particle);
         }
         else
         {
