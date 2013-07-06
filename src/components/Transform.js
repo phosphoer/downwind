@@ -5,6 +5,7 @@
   var rightConstant = new global.THREE.Vector3(1, 0, 0);
   var upConstant = new global.THREE.Vector3(0, 1, 0);
   var forwardConstant = new global.THREE.Vector3(0, 0, 1);
+  var zeroConstant = new global.THREE.Vector3(0, 0, 0);
 
   TANK.registerComponent("Transform")
 
@@ -19,39 +20,44 @@
     this.toLocalCache = new global.THREE.Matrix4();
     this.vector4Cache = new global.THREE.Vector4();
 
-    this.getRight = function ()
+    this.getRight = function (vector3Out)
     {
-      return this.vectorLocalToWorld(rightConstant);
+      this.vectorLocalToWorld(rightConstant, vector3Out);
     };
 
-    this.getUp = function ()
+    this.getUp = function (vector3Out)
     {
-      return this.vectorLocalToWorld(upConstant);
+      this.vectorLocalToWorld(upConstant, vector3Out);
     };
 
-    this.getForward = function ()
+    this.getForward = function (vector3Out)
     {
-      return this.vectorLocalToWorld(forwardConstant);
+      this.vectorLocalToWorld(forwardConstant, vector3Out);
     };
 
-    this.vectorLocalToWorld = function (vector3)
+    this.getWorldPosition = function (vector3Out)
     {
-      return this.localToWorld(vector3, 0.0);
+      this.pointLocalToWorld(zeroConstant, vector3Out);
     };
 
-    this.pointLocalToWorld = function (vector3)
+    this.vectorLocalToWorld = function (vector3, vector3Out)
     {
-      return this.localToWorld(vector3, 1.0);
+      this.localToWorld(vector3, vector3Out, 0.0);
     };
 
-    this.vectorWorldToLocal = function (vector3)
+    this.pointLocalToWorld = function (vector3, vector3Out)
     {
-      return this.worldToLocal(vector3, 0.0);
+      this.localToWorld(vector3, vector3Out, 1.0);
     };
 
-    this.pointWorldToLocal = function (vector3)
+    this.vectorWorldToLocal = function (vector3, vector3Out)
     {
-      return this.worldToLocal(vector3, 1.0);
+      this.worldToLocal(vector3, vector3Out, 0.0);
+    };
+
+    this.pointWorldToLocal = function (vector3, vector3Out)
+    {
+      this.worldToLocal(vector3, vector3Out, 1.0);
     };
 
     this.buildToWorldMatrix = function (matrix4)
@@ -71,7 +77,7 @@
       }
     };
 
-    this.localToWorld = function (vector3, w)
+    this.localToWorld = function (vector3, vector3Out, w)
     {
       this.buildToWorldMatrix(this.toWorldCache);
 
@@ -84,10 +90,12 @@
 
       v4.applyMatrix4(this.toWorldCache);
 
-      return new global.THREE.Vector3(v4.x, v4.y, v4.z);
+      vector3Out.x = v4.x;
+      vector3Out.y = v4.y;
+      vector3Out.z = v4.z;
     };
 
-    this.worldToLocal = function (vector3, w)
+    this.worldToLocal = function (vector3, vector3Out, w)
     {
       this.buildToWorldMatrix(this.toWorldCache);
       this.toLocalCache.getInverse(this.toWorldCache);
@@ -101,7 +109,9 @@
 
       v4.applyMatrix4(this.toLocalCache);
 
-      return new global.THREE.Vector3(v4.x, v4.y, v4.z);
+      vector3Out.x = v4.x;
+      vector3Out.y = v4.y;
+      vector3Out.z = v4.z;
     };
   });
 
