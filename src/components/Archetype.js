@@ -4,7 +4,7 @@
 
   TANK.createBoat = function ()
   {
-    var boat = TANK.createEntity("Transform", "Model", "Boat", "Box");
+    var boat = TANK.createEntity("Transform", "Model", "Boat", "Box", "Cannon");
 
     boat.Model.model = PirateShip;
 
