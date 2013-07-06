@@ -2,16 +2,18 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Gameplay");
+  var space = TANK.createSpace("InputManager", "Graphics", "Stats", "Gameplay", "Physics");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
   boat.addComponents("Skybox", "Controller", "ParticleEmitter", "ParticleForces", "Cannon");
   boat.Cannon.offset = new THREE.Vector3(5, 2.5, 0);
-  boat.Cannon.orientation = new THREE.Vector3(0,THREE.PI,0);
+  boat.Cannon.orientation = new THREE.Vector3(0, THREE.PI, 0);
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);
   boat.Skybox.scale.set(5000, 5000, 5000);
+
+  /*
   boat.ParticleEmitter.emitCount = 0;
   boat.ParticleEmitter.emitRate = 100;
   boat.ParticleEmitter.color.setRGB(1, 0, 0);
@@ -27,6 +29,8 @@ function main()
   boat.ParticleForces.randomForce.x = 0.4;
   boat.ParticleForces.randomForce.y = 0.4;
   boat.ParticleForces.randomForce.z = 0.4;
+  */
+
   space.addEntity(boat, "Boat");
 
 

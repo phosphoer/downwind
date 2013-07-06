@@ -26,9 +26,6 @@
       cannonBall.Transform.position = transform.position.clone();
     }
     cannonBall.Model.model = Boat;
-    cannonBall.Model.model.sizeX = 10;
-    cannonBall.Model.model.sizeY = 10;
-    cannonBall.Model.model.sizeZ = 10;
     cannonBall.CannonBall.setVelocity();
     return cannonBall;
   }
