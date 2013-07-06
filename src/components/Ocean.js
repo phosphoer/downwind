@@ -12,8 +12,12 @@
     this.cubeScale = 20;
     this.patchSize = 15;
     this.numPatches = 3;
+    this.speed = 0.4;
+    this.freq = 0.5;
+    this.height = 2;
     this.totalSize = this.numPatches * this.patchSize * this.cubeScale;
     this.patches = {};
+    this.et = 0;
   })
 
   .initialize(function ()
@@ -22,6 +26,11 @@
 
     this.node.position = this.parent.Transform.position;
     g.scene.add(this.node);
+
+    var mat = new global.THREE.MeshLambertMaterial(
+    {
+      color: 0x101010
+    });
 
     for (var x = 0; x < this.numPatches; ++x)
     {
@@ -42,11 +51,7 @@
           {
             var color = new THREE.Color();
             color.setRGB(x / (this.numPatches - 1), 0, z / (this.numPatches - 1));
-            patch.cubes[i][j] = new global.THREE.Mesh(g.unitCube, new global.THREE.MeshBasicMaterial(
-            {
-              color: color, //new THREE.Color(0x1133ee),
-              wireframe: true
-            }));
+            patch.cubes[i][j] = new global.THREE.Mesh(g.unitCube, mat);
             patch.cubes[i][j].position = new THREE.Vector3(i * this.cubeScale, 0, j * this.cubeScale);
             patch.cubes[i][j].scale = new THREE.Vector3(this.cubeScale, this.cubeScale, this.cubeScale);
             patch.node.add(patch.cubes[i][j]);
@@ -54,6 +59,9 @@
         }
       }
     }
+
+    this.node.position.x = -this.numPatches * this.patchSize * this.cubeScale * 0.5;
+    this.node.position.z = -this.numPatches * this.patchSize * this.cubeScale * 0.5;
 
     this.scrollLeft = function ()
     {
@@ -119,6 +127,28 @@
       }
     }
 
+    this.animateWaves = function (dt)
+    {
+      this.et += dt;
+
+      for (var x = 0; x < this.numPatches; ++x)
+      {
+        for (var z = 0; z < this.numPatches; ++z)
+        {
+          var patch = this.patches[x][z];
+          for (var i = 0; i < this.patchSize; ++i)
+          {
+            for (var j = 0; j < this.patchSize; ++j)
+            {
+              var cube = patch.cubes[i][j];
+              cube.position.y = global.Math.cos(this.et * this.speed + i * this.freq) * this.height *
+                global.Math.sin(this.et * this.speed + j * this.freq) * this.height;
+            }
+          }
+        }
+      }
+    }
+
 
     this.addEventListener("OnEnterFrame", OnEnterFrame);
   });
@@ -129,9 +159,9 @@
     var camPos = camera.Transform.position;
     var myPos = this.parent.Transform.position;
 
-    myPos.x = -this.numPatches * this.patchSize * this.cubeScale * 0.5;
-    myPos.z = -this.numPatches * this.patchSize * this.cubeScale * 0.5;
+    this.animateWaves(dt);
 
+    // Scroll the map
     if (camPos.x - myPos.x < this.patches[this.numPatches - 1][0].node.position.x - this.patchSize * this.cubeScale)
       this.scrollLeft();
     if (camPos.x - myPos.x > this.patches[0][0].node.position.x + 2 * this.patchSize * this.cubeScale)
