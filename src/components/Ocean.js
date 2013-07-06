@@ -10,11 +10,14 @@
   {
     this.node = new THREE.Object3D();
     this.cubeScale = 30;
-    this.patchSize = 10;
+    this.patchSize = 20;
     this.numPatches = 3;
-    this.speed = 0.3;
-    this.freq = 0.5;
-    this.height = 2;
+    this.speedX = 0.3;
+    this.speedY = 0.4;
+    this.freqX = 0.5;
+    this.freqY = 0.4;
+    this.heightX = 2;
+    this.heightY = 2.5;
     this.totalSize = this.numPatches * this.patchSize * this.cubeScale;
     this.patches = {};
     this.et = 0;
@@ -28,10 +31,6 @@
     g.scene.add(this.node);
 
     var light = new global.THREE.HemisphereLight(0xCCFFFF, 0x2F4F8F, 0.5);
-    g.scene.add(light);
-
-    light = new global.THREE.PointLight(0xFFFFFF, 1, 300);
-    light.position.set(0, 30, 0);
     g.scene.add(light);
 
     var mat = new global.THREE.MeshLambertMaterial(
@@ -84,7 +83,7 @@
         this.patches[0][i] = fromPatch;
         fromPatch.node.position.x -= this.numPatches * this.patchSize * this.cubeScale;
       }
-    }
+    };
 
     this.scrollRight = function ()
     {
@@ -100,7 +99,7 @@
         this.patches[this.numPatches - 1][i] = fromPatch;
         fromPatch.node.position.x += this.numPatches * this.patchSize * this.cubeScale;
       }
-    }
+    };
 
     this.scrollUp = function ()
     {
@@ -116,7 +115,7 @@
         this.patches[i][0] = fromPatch;
         fromPatch.node.position.z -= this.numPatches * this.patchSize * this.cubeScale;
       }
-    }
+    };
 
     this.scrollDown = function ()
     {
@@ -132,7 +131,7 @@
         this.patches[i][this.numPatches - 1] = fromPatch;
         fromPatch.node.position.z += this.numPatches * this.patchSize * this.cubeScale;
       }
-    }
+    };
 
     this.animateWaves = function (dt)
     {
@@ -148,14 +147,37 @@
             for (var j = 0; j < this.patchSize; ++j)
             {
               var cube = patch.cubes[i][j];
-              cube.position.y = global.Math.cos(this.et * this.speed + i * this.freq) * this.height *
-                global.Math.sin(this.et * this.speed + j * this.freq) * this.height;
+              cube.position.y = global.Math.cos(this.et * this.speedX + (i + x * this.patchSize) * this.freqX) * this.heightX *
+                global.Math.sin(this.et * this.speedY + (j + z * this.patchSize) * this.freqY) * this.heightY;
             }
           }
         }
       }
-    }
+    };
 
+    this.getHeight = function (x, z)
+    {
+      x -= this.parent.Transform.position.x;
+      z -= this.parent.Transform.position.z;
+
+      x -= this.patches[0][0].node.position.x;
+      z -= this.patches[0][0].node.position.z;
+
+      var patchX = Math.floor(x / (this.patchSize * this.cubeScale));
+      var patchZ = Math.floor(z / (this.patchSize * this.cubeScale));
+
+      x += this.patches[0][0].node.position.x;
+      z += this.patches[0][0].node.position.z;
+
+      var patch = this.patches[patchX][patchZ];
+      x -= patch.node.position.x;
+      z -= patch.node.position.z;
+      x = Math.floor(x / this.cubeScale);
+      z = Math.floor(z / this.cubeScale);
+
+      var cube = patch.cubes[x][z];
+      return cube.position.y;
+    }
 
     this.addEventListener("OnEnterFrame", OnEnterFrame);
   });
@@ -165,6 +187,9 @@
     var camera = TANK.Game.getEntity("Boat");
     var camPos = camera.Transform.position;
     var myPos = this.parent.Transform.position;
+    var oceanHeight = this.getHeight(camPos.x, camPos.z);
+
+    camPos.y += (oceanHeight - camPos.y) * 0.05;
 
     this.animateWaves(dt);
 
