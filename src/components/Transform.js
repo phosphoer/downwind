@@ -34,7 +34,6 @@
       return this.vectorLocalToWorld(forwardConstant);
     };
 
-
     this.buildToWorldMatrix = function (matrix4)
     {
       matrix4.makeFromPositionEulerScale(this.position, this.rotation, 'XYZ', this.scale);

@@ -20,12 +20,14 @@
 			{
 				// fire a cannonball!
 				var t = this.parent.Transform;
-				var cannon = {position: t.position.clone(), rotation: t.rotation.clone()};
+
 				// add cannon specific positioning to the boat's transform
-				var offset = this.offset.clone();
-				cannon.position.add(offset);
-				cannon.rotation.copy(this.orientation);
-				this.space.addEntity(TANK.createCannonBall(cannon));
+				var worldOffset = t.pointLocalToWorld(this.offset);
+
+				var direction = this.orientation;
+				direction.add(t.getForward());
+
+				this.space.addEntity(TANK.createCannonBall(worldOffset, direction));
 			}
 		});
 
