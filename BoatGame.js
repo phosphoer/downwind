@@ -15,9 +15,9 @@ function main()
   var starboardCannon = TANK.createCannon();
   boat.Hierarchy.attachNonRelative(starboardCannon);
   starboardCannon.Transform.position = new THREE.Vector3(0, 5, 0);
-  starboardCannon.Transform.rotation = new THREE.Vector3(0,THREE.PI * 1.5,0);
+  starboardCannon.Transform.rotation = new THREE.Vector3(0, THREE.PI * 1.5, 0);
 
-{
+  {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces");
     boat.Hierarchy.attachNonRelative(particles);
     particles.Transform.position.x = 40;
@@ -59,12 +59,10 @@ function main()
     particles.ParticleForces.randomForce.z = 0.4;
   }
 
-
   space.addEntity(boat, "Boat");
 
 
   var ocean = TANK.createEntity("Ocean");
-  ocean.Transform.position.y = -25;
   space.addEntity(ocean, "Ocean");
 
   var camera = TANK.createEntity("Transform", "Camera", "BoatCameraController");
