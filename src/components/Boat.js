@@ -22,7 +22,7 @@
     this.addEventListener("OnEnterFrame", function (dt)
     {
       var t = this.parent.Transform;
-      var facing = t.getFacing();
+      var facing = t.getForward();
 
       if (this.throttle !== 0)
       {

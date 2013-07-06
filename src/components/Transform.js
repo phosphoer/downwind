@@ -2,6 +2,10 @@
 {
   "use strict";
 
+  var rightConstant = new global.THREE.Vector3(1, 0, 0);
+  var upConstant = new global.THREE.Vector3(0, 1, 0);
+  var forwardConstant = new global.THREE.Vector3(0, 0, 1);
+
   TANK.registerComponent("Transform")
 
   .construct(function ()
@@ -13,40 +17,80 @@
     // This matrix is only built upon request (cached to avoid temporaries)
     this.toWorldCache = new global.THREE.Matrix4();
     this.toLocalCache = new global.THREE.Matrix4();
+    this.vector4Cache = new global.THREE.Vector4();
 
-    var self = this;
-
-    self.buildToWorldMatrix = function (matrix)
+    this.getRight = function ()
     {
-      matrix.makeFromPositionEulerScale(self.position, self.rotation, 'XYZ', this.scale);
-    };
-        this.getFacing = function()
-        {
-          var facing = new global.THREE.Vector3(0, 0, 1);
-	      var q = new global.THREE.Quaternion();
-	      q.setFromEuler(this.rotation);
-	      facing.applyQuaternion(q);
-	      facing.normalize();
-	      return facing;
-        }
-
-    self.localToWorld = function (vector)
-    {
-      self.buildToWorldMatrix(self.toWorldCache);
-
-      var transformed = vector.clone();
-      transformed.applyMatrix4(self.toWorldCache);
-      return transformed;
+      return this.vectorLocalToWorld(rightConstant);
     };
 
-    self.worldToLocal = function (vector)
+    this.getUp = function ()
     {
-      self.buildToWorldMatrix(self.toWorldCache);
-      self.toLocalCache.getInverse(self.toWorldCache);
+      return this.vectorLocalToWorld(upConstant);
+    };
 
-      var transformed = vector.clone();
-      transformed.applyMatrix4(self.toLocalCache);
-      return transformed;
+    this.getForward = function ()
+    {
+      return this.vectorLocalToWorld(forwardConstant);
+    };
+
+
+    this.buildToWorldMatrix = function (matrix4)
+    {
+      matrix4.makeFromPositionEulerScale(this.position, this.rotation, 'XYZ', this.scale);
+    };
+
+    this.vectorLocalToWorld = function (vector3)
+    {
+      return this.localToWorld(vector3, 0.0);
+    };
+
+    this.pointLocalToWorld = function (vector3)
+    {
+      return this.localToWorld(vector3, 1.0);
+    };
+
+    this.vectorWorldToLocal = function (vector3)
+    {
+      return this.worldToLocal(vector3, 0.0);
+    };
+
+    this.pointWorldToLocal = function (vector3)
+    {
+      return this.worldToLocal(vector3, 1.0);
+    };
+
+    this.localToWorld = function (vector3, w)
+    {
+      this.buildToWorldMatrix(this.toWorldCache);
+
+      var v4 = this.vector4Cache;
+
+      v4.x = vector3.x;
+      v4.y = vector3.y;
+      v4.z = vector3.z;
+      v4.w = w;
+
+      v4.applyMatrix4(this.toWorldCache);
+
+      return new global.THREE.Vector3(v4.x, v4.y, v4.z);
+    };
+
+    this.worldToLocal = function (vector3, w)
+    {
+      this.buildToWorldMatrix(this.toWorldCache);
+      this.toLocalCache.getInverse(this.toWorldCache);
+
+      var v4 = this.vector4Cache;
+
+      v4.x = vector3.x;
+      v4.y = vector3.y;
+      v4.z = vector3.z;
+      v4.w = w;
+
+      v4.applyMatrix4(this.toLocalCache);
+
+      return new global.THREE.Vector3(v4.x, v4.y, v4.z);
     };
   });
 
