@@ -8,10 +8,6 @@
 
 	.construct(function ()
 	{
-		this.linkTransform = function(transform)
-		{
-			this.parent.Transform = transform;
-		};
 	})
 
 	.initialize(function ()

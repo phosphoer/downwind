@@ -22,12 +22,7 @@
     this.addEventListener("OnEnterFrame", function (dt)
     {
       var t = this.parent.Transform;
-
-      var facing = new global.THREE.Vector3(0, 0, 1);
-      var q = new global.THREE.Quaternion();
-      q.setFromEuler(t.rotation);
-      facing.applyQuaternion(q);
-      facing.normalize();
+      var facing = t.getFacing();
 
       if (this.throttle !== 0)
       {
