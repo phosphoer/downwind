@@ -12,8 +12,9 @@ function main()
   boat.Skybox.scale.set(5000, 5000, 5000);
   boat.Model.model = Boat;
 
-  boat.Boat.forwardAcceleration = 8.2;
-  boat.Boat.backwardAcceleration = 4.4;
+  boat.Boat.forwardSpeed = 8.2;
+  boat.Boat.backwardSpeed = 4.4;
+  boat.Boat.turnSpeed = .7;
   boat.Boat.friction = .95;
 
   space.addEntity(boat, "Boat");
