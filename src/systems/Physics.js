@@ -1,49 +1,50 @@
 (function (global, TANK)
 {
-	"use strict";
+  "use strict";
 
-	TANK.registerComponent("Physics")
+  TANK.registerComponent("Physics")
 
-	.initialize(function ()
-	{
-		this.colliders = {};
+  .initialize(function ()
+  {
+    this.colliders = {};
 
-		this.addEventListener("OnEnterFrame", function (dt)
-		{
-			var colliders = [];
-			for (var c in this.colliders)
-			{
-				if (this.colliders.hasOwnProperty(c))
-				{
-					colliders.push(this.colliders[c]);
-				}
-			}
+    this.addEventListener("OnEnterFrame", function (dt)
+    {
+      var colliders = [];
+      for (var c in this.colliders)
+      {
+        if (this.colliders.hasOwnProperty(c))
+        {
+          colliders.push(this.colliders[c]);
+        }
+      }
 
-			var i, j, a, b;
+      var i, j, a, b;
 
-			for (i = 0; i < colliders.length; ++i)
-			{
-				for (j = i + 1; j < colliders.length; ++j)
-				{
-					a = colliders[i];
-					b = colliders[j];
+      for (i = 0; i < colliders.length; ++i)
+      {
+        for (j = i + 1; j < colliders.length; ++j)
+        {
+          a = colliders[i];
+          b = colliders[j];
 
-					if (isColliding(a, b))
-					{
-						a.parent.invoke("onCollide", b);
-						b.parent.invoke("onCollide", a);
-					}
-				}
-			}
+          if (isColliding(a, b))
+          {
+            a.parent.invoke("onCollide", b);
+            b.parent.invoke("onCollide", a);
 
-		});
-	});
+          }
+        }
+      }
 
-	function isColliding(a, b)
-	{
-		var d = a.position.distanceTo(b.position);
-		return d < a.radius + b.radius;
-	}
+    });
+  });
+
+  function isColliding(a, b)
+  {
+    var d = a.position.distanceTo(b.position);
+    return d < a.radius + b.radius;
+  }
 
 }(this, this.TANK = this.TANK ||
 {}));

@@ -2,7 +2,7 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Stats", "Gameplay");
+  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Gameplay");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();

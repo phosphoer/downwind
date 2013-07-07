@@ -23,7 +23,7 @@
 
   TANK.createCrate = function ()
   {
-    var crate = TANK.createEntity("Transform", "Model", "Bouyant");
+    var crate = TANK.createEntity("Transform", "Model", "Bouyant", "ModelCollider");
 
     crate.Model.model = Crate;
     crate.Transform.rotation.x = Math.random() * Math.PI * 2;
