@@ -34,17 +34,16 @@
     var enemyBoat = TANK.createBoat();
     enemyBoat.Model.model = EnemyShip;
     enemyBoat.Transform.position.x = 200;
-    enemyBoat.Transform.position.z = 700;
+    enemyBoat.Transform.position.z = 900;
     enemyBoat.Boat.throttle = 1;
     enemyBoat.Boat.forwardSpeed = 10;
     TANK.Game.addEntity(enemyBoat, "EnemyShip");
 
-    for (var i = 0; i < 10; ++i)
+    for (var i = 0; i < 15; ++i)
     {
       var crate = TANK.createCrate();
-      crate.Transform.position.x = Math.random() * 200;
-      crate.Transform.position.z = Math.random() * 200;
-      crate.Bouyant.percent = 0.3 + Math.random() * 0.3;
+      crate.Transform.position.x = (i / 14) * enemyBoat.Transform.position.x + global.Math.random() * 200 - 100;
+      crate.Transform.position.z = (i / 14) * enemyBoat.Transform.position.z + global.Math.random() * 200 - 100;
       TANK.Game.addEntity(crate);
     }
 

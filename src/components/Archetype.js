@@ -27,6 +27,8 @@
     crate.Transform.rotation.x = Math.random() * Math.PI * 2;
     crate.Transform.rotation.y = Math.random() * Math.PI * 2;
     crate.Transform.rotation.z = Math.random() * Math.PI * 2;
+    crate.Bouyant.wobble = true;
+    crate.Bouyant.percent = 0;
 
     var size = 0.3 + Math.random() * 1;
     crate.Transform.scale.x = size;
