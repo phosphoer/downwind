@@ -58,7 +58,7 @@
           var particleEmitter = this.parent.Hierarchy.children[0].ParticleEmitter;
           if (this.throttle !== 0)
           {
-            particleEmitter.emitRate = 50 * vel.length() + 0.001;
+            particleEmitter.emitRate = 50 * vel.length() + 10.001;
             particleEmitter.linearVelocity.x = -vel.x;
             particleEmitter.linearVelocity.y = -1.0;
             particleEmitter.linearVelocity.z = -vel.z;

@@ -30,7 +30,7 @@
   TANK.createCannonBall = function (position, direction)
   {
     var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
-    cannonBall.Transform.position.copy(position);
+    cannonBall.Transform.position = position.clone();
     cannonBall.Model.model = Boat;
     cannonBall.CannonBall.setVelocity(direction.clone());
     return cannonBall;
@@ -44,16 +44,16 @@
     particles.Transform.position.y = -15;
     particles.Transform.position.z = -40;
     particles.ParticleEmitter.emitCount = 0;
-    particles.ParticleEmitter.emitRate = 0;
+    particles.ParticleEmitter.emitRate = 0.001;
     particles.ParticleEmitter.color.setRGB(.7, .7, 1);
     particles.ParticleEmitter.randomLinearVelocity.x = 0.1;
     particles.ParticleEmitter.randomLinearVelocity.y = 0.1;
     particles.ParticleEmitter.randomLinearVelocity.z = 0.1;
     particles.ParticleEmitter.linearVelocity.x = 1.0;
-    particles.ParticleEmitter.linearVelocity.y = 0.0;
+    particles.ParticleEmitter.linearVelocity.y = 0.001;
     particles.ParticleEmitter.linearVelocity.z = 1.0;
     particles.ParticleEmitter.spawnArea.z = 15;
-    particles.ParticleEmitter.maxParticlesInOneFrame = 1;
+    particles.ParticleEmitter.maxParticlesInOneFrame = 3;
     particles.ParticleEmitter.size = 1;
     particles.ParticleForces.damping = 0.97;
     particles.ParticleForces.growth = 0.99;
