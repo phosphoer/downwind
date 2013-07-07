@@ -7,6 +7,7 @@
   .construct(function ()
   {
     this.time = 3;
+    this.runOnDeath = null;
   })
 
   .initialize(function ()
@@ -20,6 +21,11 @@
       if (this.timer > this.time)
       {
         this.space.removeEntity(this.parent);
+
+        if (this.runOnDeath)
+        {
+          this.runOnDeath(this.parent);
+        }
       }
     });
   });
