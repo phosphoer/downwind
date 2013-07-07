@@ -58,18 +58,18 @@
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient", "TimedDeath");
     particles.Transform.position.copy(position);
     particles.ParticleEmitter.emitCount = 10;
-    particles.ParticleEmitter.emitRate = 30;
+    particles.ParticleEmitter.emitRate = 0;
     particles.ParticleEmitter.lifetime = 0.6;
     particles.ParticleEmitter.randomLinearVelocity.x = 0.5;
     particles.ParticleEmitter.randomLinearVelocity.y = 0.5;
     particles.ParticleEmitter.randomLinearVelocity.z = 0.5;
-    particles.ParticleEmitter.linearVelocity.z = 10;
+    particles.ParticleEmitter.linearVelocity.z = 3;
     particles.ParticleEmitter.spawnArea.x = 0.3;
     particles.ParticleEmitter.spawnArea.y = 0.3;
     particles.ParticleEmitter.spawnArea.z = 0.3;
-    particles.ParticleEmitter.size = 2;
-    particles.ParticleForces.constantForce.y = -0.001;
-    particles.ParticleForces.damping = 0.995;
+    particles.ParticleEmitter.size = 1;
+    particles.ParticleForces.constantForce.y = -0.004;
+    particles.ParticleForces.damping = 0.99;
     particles.ParticleForces.growth = 0.99;
 
     particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
