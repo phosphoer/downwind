@@ -6,21 +6,30 @@
 
   .initialize(function ()
   {
-    var i, j;
-    var scale = 100;
-    for (i = 0; i <= 1; ++i)
+    this.fade = $("<div class='Fade' />").appendTo($("body"));
+
+    var self = this;
+    setTimeout(function ()
     {
-      for (j = 0; j <= 1; ++j)
+      self.fade.remove();
+
+      setTimeout(function ()
       {
-        var boat = TANK.createBoat();
-        boat.addComponents("Wander");
-        boat.Model.model = EnemyShip;
-        boat.Transform.position.set(i * scale, 0, j * scale);
-        boat.Transform.scale.set(0.5, 0.5, 0.5);
-        boat.Transform.rotation.y = Math.random();
-        this.parent.addEntity(boat);
-      }
-    }
+        this.splash = $("<div class='Splash' />").appendTo($("body"));
+        setTimeout(function ()
+        {
+          this.splash.remove();
+          this.splash = $("<div class='SplashFadeOut' />").appendTo($("body"));
+
+          setTimeout(function ()
+          {
+            this.splash.remove();
+          }, 4000);
+        }, 4000);
+
+      }, 4000);
+
+    }, 5000);
 
   });
 

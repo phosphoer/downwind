@@ -92,67 +92,34 @@
 
   TANK.createWake = function (obj)
   {
-    var particlesPort = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
-    if (typeof obj !== "undefined")
-    {
-      obj.Hierarchy.attachNonRelative(particlesPort);
-    }
-    particlesPort.Transform.position.x = 15;
-    particlesPort.Transform.position.y = -15;
-    particlesPort.Transform.position.z = -40;
-    particlesPort.ParticleEmitter.emitCount = 0;
-    particlesPort.ParticleEmitter.emitRate = 0.001;
-    particlesPort.ParticleEmitter.color.setRGB(.7, .7, 1);
-    particlesPort.ParticleEmitter.randomLinearVelocity.x = 0.1;
-    particlesPort.ParticleEmitter.randomLinearVelocity.y = 0.1;
-    particlesPort.ParticleEmitter.randomLinearVelocity.z = 0.1;
-    particlesPort.ParticleEmitter.linearVelocity.x = 1.0;
-    particlesPort.ParticleEmitter.linearVelocity.y = 0.001;
-    particlesPort.ParticleEmitter.linearVelocity.z = 1.0;
-    particlesPort.ParticleEmitter.spawnArea.z = 15;
-    particlesPort.ParticleEmitter.maxparticlesInOneFrame = 3;
-    particlesPort.ParticleEmitter.size = 1;
-    particlesPort.ParticleForces.damping = 0.97;
-    particlesPort.ParticleForces.growth = 0.99;
-    particlesPort.ParticleForces.randomForce.x = 0.4;
-    particlesPort.ParticleForces.randomForce.y = 0.4;
-    particlesPort.ParticleForces.randomForce.z = 0.4;
+  	var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
+    if (typeof obj !== "undefined"){ obj.Hierarchy.attachNonRelative(particles);}
+    particles.Transform.position.x = 0;
+    particles.Transform.position.y = -35;
+    particles.Transform.position.z = -40;
+    particles.ParticleEmitter.emitCount = 0;
+    particles.ParticleEmitter.emitRate = 0.001;
+    particles.ParticleEmitter.color.setRGB(.7, .7, 1);
+    particles.ParticleEmitter.randomLinearVelocity.x = 0.0;
+    particles.ParticleEmitter.randomLinearVelocity.y = 0.0;
+    particles.ParticleEmitter.randomLinearVelocity.z = 0.0;
+    particles.ParticleEmitter.linearVelocity.x = 1.0;
+    particles.ParticleEmitter.linearVelocity.y = 0.001;
+    particles.ParticleEmitter.linearVelocity.z = 1.0;
+    particles.ParticleEmitter.spawnArea.z = 15;
+    particles.ParticleEmitter.maxparticlesInOneFrame = 1;
+    particles.ParticleEmitter.size = 9;
+    particles.ParticleForces.damping = 0.97;
+    particles.ParticleForces.growth = 1.01;
+    particles.ParticleForces.randomForce.x = 0.4;
+    particles.ParticleForces.randomForce.y = 0.4;
+    particles.ParticleForces.randomForce.z = 0.4;
+    particles.ParticleForces.constantForce.y = 0.1;
 
-    particlesPort.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
-    particlesPort.ParticleGradient.gradient.add(new THREE.Color(0x2Dffff), 0.2);
-    particlesPort.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.5);
-    particlesPort.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 1.0);
-
-    var particlesStarboard = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
-    if (typeof obj !== "undefined")
-    {
-      obj.Hierarchy.attachNonRelative(particlesStarboard);
-    }
-    particlesStarboard.Transform.position.x = -15;
-    particlesStarboard.Transform.position.y = -15;
-    particlesStarboard.Transform.position.z = -40;
-    particlesStarboard.ParticleEmitter.emitCount = 0;
-    particlesStarboard.ParticleEmitter.emitRate = 0.001;
-    particlesStarboard.ParticleEmitter.color.setRGB(.7, .7, 1);
-    particlesStarboard.ParticleEmitter.randomLinearVelocity.x = 0.1;
-    particlesStarboard.ParticleEmitter.randomLinearVelocity.y = 0.1;
-    particlesStarboard.ParticleEmitter.randomLinearVelocity.z = 0.1;
-    particlesStarboard.ParticleEmitter.linearVelocity.x = 1.0;
-    particlesStarboard.ParticleEmitter.linearVelocity.y = 0.001;
-    particlesStarboard.ParticleEmitter.linearVelocity.z = 1.0;
-    particlesStarboard.ParticleEmitter.spawnArea.z = 15;
-    particlesStarboard.ParticleEmitter.maxparticlesInOneFrame = 3;
-    particlesStarboard.ParticleEmitter.size = 1;
-    particlesStarboard.ParticleForces.damping = 0.97;
-    particlesStarboard.ParticleForces.growth = 0.99;
-    particlesStarboard.ParticleForces.randomForce.x = 0.4;
-    particlesStarboard.ParticleForces.randomForce.y = 0.4;
-    particlesStarboard.ParticleForces.randomForce.z = 0.4;
-
-    particlesStarboard.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
-    particlesStarboard.ParticleGradient.gradient.add(new THREE.Color(0x2Dffff), 0.2);
-    particlesStarboard.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.5);
-    particlesStarboard.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 1.0);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 1.0);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0x2Dffff), 0.5);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.2);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 0.0);
 
   }
 

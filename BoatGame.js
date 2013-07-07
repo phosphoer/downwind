@@ -47,6 +47,7 @@ function main()
 
 
 
+  /*
   {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces");
     boat.Hierarchy.attachNonRelative(particles);
@@ -74,9 +75,9 @@ function main()
     // particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
     // particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
   }
+  */
 
   space.addEntity(boat, "Boat");
-
 
   var ocean = TANK.createEntity("Ocean");
   space.addEntity(ocean, "Ocean");
@@ -85,9 +86,6 @@ function main()
   camera.Camera.target = "Boat";
   space.addEntity(camera, "Camera");
   camera.Camera.activate();
-
-  // var light = TANK.createEntity("Light");
-  // space.addEntity(light);
 
 
   TANK.start();
