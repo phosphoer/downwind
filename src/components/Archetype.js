@@ -11,10 +11,10 @@
 
     TANK.createWake(boat);
 
-    boat.Boat.forwardSpeed = 130;
-    boat.Boat.backwardSpeed = 40;
-    boat.Boat.turnSpeed = .008;
-    boat.Boat.friction = .95;
+    boat.Boat.forwardSpeed = 25;
+    boat.Boat.backwardSpeed = 0;
+    boat.Boat.turnSpeed = .0025;
+    boat.Boat.friction = .99;
     boat.Bouyant.wobble = true;
     boat.Bouyant.wobbleAmount = 0.1;
 

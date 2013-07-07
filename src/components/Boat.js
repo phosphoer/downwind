@@ -73,7 +73,7 @@
       {
         // terrible code, sorry
         var particleEmitter = this.parent.Hierarchy.children[0].ParticleEmitter;
-        if (this.throttle !== 0)
+        if (this.velocity.length() > 0.001)
         {
 
           particleEmitter.emitRate = 16 * vel.length() + 1.001;
