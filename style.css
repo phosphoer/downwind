@@ -13,16 +13,28 @@ canvas
   height: 100%;
 }
 
-@keyframes fade
+@keyframes fadeIn
 {
   from {opacity: 1.0;}
   to {opacity: 0.0;}
 }
 
-@-webkit-keyframes fade /* Safari and Chrome */
+@-webkit-keyframes fadeIn /* Safari and Chrome */
 {
   from {opacity: 1.0;}
   to {opacity: 0.0;}
+}
+
+@keyframes fadeOut
+{
+  from {opacity: 0.0;}
+  to {opacity: 1.0;}
+}
+
+@-webkit-keyframes fadeOut /* Safari and Chrome */
+{
+  from {opacity: 0.0;}
+  to {opacity: 1.0;}
 }
 
 div.Fade
@@ -32,7 +44,24 @@ div.Fade
     height: 100%;
     left: 0px;
     top: 0px;
-    animation: fade 5.0s;
-    -webkit-animation: fade 5.0s; /* Safari and Chrome */
+    animation: fadeIn 5.0s;
+    -webkit-animation: fadeIn 5.0s; /* Safari and Chrome */
     position: absolute;
+}
+
+div.Splash
+{
+    display: inline-block;  
+    background-image:url('res/splash.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    font-size: 44px;
+    animation: fadeOut 4.0s;
+    -webkit-animation: fadeOut 4.0s; /* Safari and Chrome */      
 }
