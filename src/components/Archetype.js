@@ -22,7 +22,9 @@
   TANK.createCannon = function ()
   {
     var cannon = TANK.createEntity("Transform", "Model", "Cannon");
-    cannon.Model.model = Boat;
+    cannon.Model.model = Cannon;
+
+    //defaults to work with current boat size, scale as necessary?
     return cannon;
   }
 
