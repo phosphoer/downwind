@@ -179,7 +179,7 @@
       z = Math.floor(z / this.cubeScale);
 
       var cube = patch.cubes[x][z];
-      return cube.position.y;
+      return cube.position.y + 15;
     }
 
     this.addEventListener("OnEnterFrame", OnEnterFrame);
@@ -190,9 +190,6 @@
     var camera = TANK.Game.getEntity("Boat");
     var camPos = camera.Transform.position;
     var myPos = this.parent.Transform.position;
-    var oceanHeight = this.getHeight(camPos.x, camPos.z);
-
-    camPos.y += (oceanHeight - camPos.y) * 0.05;
 
     this.animateWaves(dt);
 

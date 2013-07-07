@@ -81,6 +81,15 @@
 
       t.rotation.y += this.angularVelocity * dt;
 
+      // Float on Ocean
+      var obj = this.space.getEntity("Ocean");
+      if (obj)
+      {
+        var height = obj.Ocean.getHeight(t.position.x, t.position.z);
+        height += this.parent.Model.sizeY * this.parent.Model.mesh.scale.y * 0.5 * 0.8;
+        t.position.y += (height - t.position.y) * 0.08;
+      }
+
     });
   });
 
