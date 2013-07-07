@@ -35,8 +35,8 @@
       if (this.wobble)
       {
         t.rotation.x = global.Math.sin((this.et + this.wobbleOffset) * this.wobbleSpeed) * this.wobbleAmount;
-        t.rotation.z = global.Math.cos((this.et + this.wobbleOffset) * this.wobbleSpeed) * this.wobbleAmount;
       }
+
     });
   });
 

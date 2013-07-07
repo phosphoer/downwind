@@ -76,7 +76,7 @@
         if (this.throttle !== 0)
         {
 
-          particleEmitter.emitRate = 8 * vel.length() + 1.001;
+          particleEmitter.emitRate = 16 * vel.length() + 1.001;
 
           vel.normalize();
           particleEmitter.linearVelocity.x = -vel.x * 2;
@@ -94,7 +94,7 @@
         this.angularVelocity += forwardForce * this.turnSpeed * this.turn * dt;
       }
 
-      t.rotation.z = -this.angularVelocity;
+      t.rotation.z = 0.3 * -this.angularVelocity;
 
       // Apply angular friction
       this.angularVelocity *= this.friction;

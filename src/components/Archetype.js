@@ -11,7 +11,7 @@
 
     TANK.createWake(boat);
 
-    boat.Boat.forwardSpeed = 100;
+    boat.Boat.forwardSpeed = 130;
     boat.Boat.backwardSpeed = 40;
     boat.Boat.turnSpeed = .008;
     boat.Boat.friction = .95;
@@ -145,7 +145,7 @@
     particles.ParticleForces.randomForce.y = 0.0;
     particles.ParticleForces.randomForce.z = 0.4;
     particles.ParticleForces.constantForce.y = 0.05;
-    particles.ParticleForces.lifetime = 3;
+    particles.ParticleForces.lifetime = 2.5;
     particles.ParticleForces.lifetimeVariance = 0.5;
 
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 0.0);
