@@ -23,12 +23,12 @@
     self.maxPitch = 80;
 
 
-    self.yaw = 0;
-    self.pitch = 45;
-    self.distance = 100;
+    self.yaw = -97.90000000000015;
+    self.pitch = 73.90000000000039;
+    self.distance = 130;
 
-    self.actualYaw = 0;
-    self.actualPitch = 45;
+    self.actualYaw = -97.90000000000015;
+    self.actualPitch = 73.90000000000039;
     self.actualDistance = 100;
     self.smoothing = 0.15;
 
