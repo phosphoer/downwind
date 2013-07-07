@@ -30,7 +30,7 @@
   TANK.createCannonBall = function (position, direction)
   {
     var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall");
-    cannonBall.Transform.position = position.clone();
+    cannonBall.Transform.position.copy(position);
     cannonBall.Model.model = Boat;
     cannonBall.CannonBall.setVelocity(direction.clone());
     return cannonBall;

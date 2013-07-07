@@ -14,15 +14,14 @@ function main()
 
   var starboardCannon = TANK.createCannon();
   boat.Hierarchy.attachNonRelative(starboardCannon);
-  starboardCannon.Transform.position = new THREE.Vector3(0, 5, 0);
-  starboardCannon.Transform.rotation = new THREE.Vector3(0, THREE.PI * 1.5, 0);
+  starboardCannon.Transform.position.y = 5;
+  starboardCannon.Transform.rotation.y = Math.PI * 0.5;
 
-  /*
   {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
     boat.Hierarchy.attachNonRelative(particles);
-    particles.Transform.position.y = -5;
-    particles.Transform.position.z = -5;
+    particles.Transform.position.y = -15;
+    particles.Transform.position.z = -2;
     particles.ParticleEmitter.emitCount = 0;
     particles.ParticleEmitter.emitRate = 30;
     particles.ParticleEmitter.color.setRGB(1, 0, 0);
@@ -44,7 +43,6 @@ function main()
     particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
     particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
   }
-  */
 
   space.addEntity(boat, "Boat");
 

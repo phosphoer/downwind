@@ -33,6 +33,7 @@
 
         particle.scale.multiplyScalar(self.growth);
         particle._velocity.multiplyScalar(self.damping);
+        particle._angularVelocity.multiplyScalar(self.damping);
 
         particle._velocity.x += TANK.Math.variance(0, self.randomForce.x) * dt;
         particle._velocity.y += TANK.Math.variance(0, self.randomForce.y) * dt;

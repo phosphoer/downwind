@@ -18,16 +18,14 @@
         // fire a cannonball!
         var t = this.parent.Transform;
 
-        // // add cannon specific positioning to the boat's transform
-        // var worldOffset = t.pointLocalToWorld(this.offset);
-
-        // var direction = this.orientation;
-        // direction.add(t.getForward());
-
         var forward = new global.THREE.Vector3();
         t.getForward(forward);
 
-        this.space.addEntity(TANK.createCannonBall(t.position, forward));
+        var worldPosition = new global.THREE.Vector3();
+        t.getWorldPosition(worldPosition);
+
+
+        this.space.addEntity(TANK.createCannonBall(worldPosition, forward));
       }
     });
 

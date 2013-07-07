@@ -11,14 +11,15 @@
 
   .construct(function ()
   {
-    this.position = new global.THREE.Vector3();
-    this.rotation = new global.THREE.Vector3();
-    this.scale = new global.THREE.Vector3(1, 1, 1);
+    this.object3d = new global.THREE.Object3D();
+    this.object3d.matrixAutoUpdate = true;
 
-    // This matrix is only built upon request (cached to avoid temporaries)
-    this.toWorldCache = new global.THREE.Matrix4();
-    this.toLocalCache = new global.THREE.Matrix4();
+    this.position = this.object3d.position;
+    this.rotation = this.object3d.rotation;
+    this.scale = this.object3d.scale;
+
     this.vector4Cache = new global.THREE.Vector4();
+    this.worldToLocalCache = new global.THREE.Matrix4();
 
     this.getRight = function (vector3Out)
     {
@@ -60,27 +61,8 @@
       this.worldToLocal(vector3, vector3Out, 1.0);
     };
 
-    this.buildToWorldMatrix = function (matrix4)
-    {
-      matrix4.makeFromPositionEulerScale(this.position, this.rotation, 'XYZ', this.scale);
-
-      // Check if we have a hierarchy mother
-      var mother = this.parent.mother;
-      if (mother)
-      {
-        var motherTx = mother.Transform;
-        if (motherTx)
-        {
-          motherTx.buildToWorldMatrix(motherTx.toWorldCache);
-          matrix4.multiplyMatrices(motherTx.toWorldCache, matrix4);
-        }
-      }
-    };
-
     this.localToWorld = function (vector3, vector3Out, w)
     {
-      this.buildToWorldMatrix(this.toWorldCache);
-
       var v4 = this.vector4Cache;
 
       v4.x = vector3.x;
@@ -88,7 +70,7 @@
       v4.z = vector3.z;
       v4.w = w;
 
-      v4.applyMatrix4(this.toWorldCache);
+      v4.applyMatrix4(this.object3d.matrixWorld);
 
       vector3Out.x = v4.x;
       vector3Out.y = v4.y;
@@ -97,8 +79,7 @@
 
     this.worldToLocal = function (vector3, vector3Out, w)
     {
-      this.buildToWorldMatrix(this.toWorldCache);
-      this.toLocalCache.getInverse(this.toWorldCache);
+      this.worldToLocalCache.getInverse(this.object3d.matrixWorld);
 
       var v4 = this.vector4Cache;
 
@@ -107,12 +88,34 @@
       v4.z = vector3.z;
       v4.w = w;
 
-      v4.applyMatrix4(this.toLocalCache);
+      v4.applyMatrix4(this.worldToLocalCache);
 
       vector3Out.x = v4.x;
       vector3Out.y = v4.y;
       vector3Out.z = v4.z;
     };
+  })
+
+  .initialize(function ()
+  {
+    var addedAsChild = false;
+
+    var mother = this.parent.mother;
+
+    if (mother)
+    {
+      var motherTx = mother.Transform;
+      if (motherTx)
+      {
+        motherTx.object3d.add(this.object3d);
+        addedAsChild = true;
+      }
+    }
+
+    if (addedAsChild == false)
+    {
+      this.space.Graphics.scene.add(this.object3d);
+    }
   });
 
 }(this, this.TANK = this.TANK ||
