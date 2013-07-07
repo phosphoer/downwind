@@ -26,6 +26,11 @@
 
 
         this.space.addEntity(TANK.createCannonBall(worldPosition, forward));
+
+        var blastEffect = TANK.createCannonBlast(worldPosition);
+        blastEffect.ParticleEmitter.linearVelocity.copy(forward);
+        blastEffect.ParticleEmitter.linearVelocity.multiplyScalar(5);
+        this.space.addEntity(blastEffect);
       }
     });
 

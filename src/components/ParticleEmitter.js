@@ -160,6 +160,19 @@
     // self.mesh.position = t.position;
     // self.mesh.scale = self.scale;
     // 
+  })
+
+  .destruct(function ()
+  {
+    self = this;
+
+    // Remove the particles leftover from the scene
+    for (var i = 0; i < self.particles.length; ++i)
+    {
+      var particle = self.particles[i];
+
+      self.space.Graphics.scene.remove(particle);
+    }
   });
 
 }(this, this.TANK = this.TANK ||
