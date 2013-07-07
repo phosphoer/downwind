@@ -59,11 +59,11 @@
         if (this.throttle !== 0)
         {
 
-            particleEmitter.emitRate = 10 * vel.length() + 3.001;
+            particleEmitter.emitRate = 8 * vel.length() + 1.001;
 
             vel.normalize();
             particleEmitter.linearVelocity.x = -vel.x * 2;
-          particleEmitter.linearVelocity.y = -1.0;
+            particleEmitter.linearVelocity.y = 0;
             particleEmitter.linearVelocity.z = -vel.z * 2;
         }
         else
