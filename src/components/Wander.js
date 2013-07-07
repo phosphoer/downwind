@@ -6,14 +6,27 @@
 
   .requires("Boat")
 
+  .construct(function ()
+  {
+    this.et = 0;
+    this.turnTime = 10;
+  })
+
   .initialize(function ()
   {
-    var turn = Math.random() > 0.5 ? 1 : -1;
-
-    this.parent.Boat.turn = turn;
     this.parent.Boat.throttle = 1;
-    this.addEventListener("OnEnterFrame", function (dt) {
+    this.parent.Boat.forwardSpeed = 80;
+    this.parent.Boat.turnSpeed = .005;
 
+    this.addEventListener("OnEnterFrame", function (dt)
+    {
+      this.et += dt;
+      if (this.et > this.turnTime)
+      {
+        this.et = 0;
+        this.turnTime = 10 + global.Math.random() * 20;
+        this.parent.Boat.turn = global.Math.round(-1 + global.Math.random() * 2);
+      }
     });
   });
 

@@ -34,11 +34,10 @@
     }, 4000);
 
     var enemyBoat = TANK.createBoat();
+    enemyBoat.addComponent("Wander");
     enemyBoat.Model.model = EnemyShip;
     enemyBoat.Transform.position.x = 200;
     enemyBoat.Transform.position.z = 800;
-    enemyBoat.Boat.throttle = 1;
-    enemyBoat.Boat.forwardSpeed = 8;
     TANK.Game.addEntity(enemyBoat, "EnemyShip");
 
     for (var i = 0; i < 15; ++i)

@@ -11,9 +11,9 @@
 
     TANK.createWake(boat);
 
-    boat.Boat.forwardSpeed = 12.2;
-    boat.Boat.backwardSpeed = 4.4;
-    boat.Boat.turnSpeed = .01;
+    boat.Boat.forwardSpeed = 100;
+    boat.Boat.backwardSpeed = 40;
+    boat.Boat.turnSpeed = .006;
     boat.Boat.friction = .95;
     boat.Bouyant.wobble = true;
     boat.Bouyant.wobbleAmount = 0.1;
@@ -136,11 +136,13 @@
     particles.ParticleEmitter.maxParticlesInOneFrame = 1;
     particles.ParticleEmitter.size = 9;
     particles.ParticleForces.damping = 0;
-    particles.ParticleForces.growth = 1.005;
+    particles.ParticleForces.growth = 1.002;
     particles.ParticleForces.randomForce.x = 0.4;
     particles.ParticleForces.randomForce.y = 0.0;
     particles.ParticleForces.randomForce.z = 0.4;
     particles.ParticleForces.constantForce.y = 0.05;
+    particles.ParticleForces.lifetime = 3;
+    particles.ParticleForces.lifetimeVariance = 0.5;
 
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 0.0);
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.2);
