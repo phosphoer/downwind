@@ -179,7 +179,7 @@
       z = Math.floor(z / this.cubeScale);
 
       var cube = patch.cubes[x][z];
-      return cube.position.y;
+      return cube.position.y + 15;
     }
 
     this.addEventListener("OnEnterFrame", OnEnterFrame);
