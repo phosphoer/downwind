@@ -30,8 +30,6 @@
     this.node.position = this.parent.Transform.position;
     g.scene.add(this.node);
 
-    var light = new global.THREE.HemisphereLight(0xCCFFFF, 0x2F4F8F, 0.5);
-    g.scene.add(light);
 
     var mat = new global.THREE.MeshLambertMaterial(
     {

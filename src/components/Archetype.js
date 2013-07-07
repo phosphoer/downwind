@@ -111,7 +111,7 @@
     particles.ParticleEmitter.linearVelocity.y = 0.1;
     particles.ParticleEmitter.linearVelocity.z = 1.0;
     particles.ParticleEmitter.spawnArea.z = 10;
-    particles.ParticleEmitter.maxparticlesInOneFrame = 1;
+    particles.ParticleEmitter.maxParticlesInOneFrame = 1;
     particles.ParticleEmitter.size = 9;
     particles.ParticleForces.damping = 0;
     particles.ParticleForces.growth = 1.005;
