@@ -10,11 +10,20 @@
   .construct(function ()
   {
     this.lift = 0.15;
+    this.returnSmoothing = 0.1;
+    this.recoil = 2;
   })
 
   .initialize(function ()
   {
     this.initialPosition = this.parent.Transform.position.clone();
+
+    this.addEventListener("OnEnterFrame", function (dt)
+    {
+      var t = this.parent.Transform;
+
+      t.position.lerp(this.initialPosition, this.returnSmoothing);
+    });
 
     this.addEventListener("OnFiring", function (object)
     {
@@ -23,8 +32,12 @@
         // fire a cannonball!
         var t = this.parent.Transform;
 
+        var recoilVec = new global.THREE.Vector3(-this.recoil, 0, 0);
+        t.position.add(recoilVec);
+
         var forward = new global.THREE.Vector3();
         t.getForward(forward);
+        // Now we normalize it, to ignore any scaling from before
         forward.normalize();
 
         forward.y += this.lift;
