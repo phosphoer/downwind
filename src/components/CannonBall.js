@@ -11,6 +11,7 @@
   {
     this.velocity = new THREE.Vector3();
     this.defaultSpeed = 100;
+    this.gravity = -6;
 
     this.setVelocity = function (direction, speed)
     {
@@ -38,8 +39,12 @@
     {
       var t = this.parent.Transform;
 
+      this.velocity.y += this.gravity * dt;
+
       // Integrate position
       var vel = this.velocity.clone();
+
+
       vel.multiplyScalar(dt);
       t.position.add(vel);
     });

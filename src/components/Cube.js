@@ -9,22 +9,17 @@
   .construct(function ()
   {
     this.material = new global.THREE.MeshBasicMaterial();
-
-    this.mesh = new global.THREE.Mesh(g.unitCube, this.material);
-  });
+  })
 
   .initialize(function ()
   {
-    var g = self.space.Graphics;
-
+    this.mesh = new global.THREE.Mesh(this.space.Graphics.unitCube, this.material);
     this.parent.Transform.object3d.add(this.mesh);
-
-    g.scene.add(this.mesh);
   })
 
   .destruct(function ()
   {
-    this.parent.Transform.object3d.remove(this.mesh);
+    this.mesh.parent.remove(this.mesh);
   });
 
 }(this, this.TANK = this.TANK ||

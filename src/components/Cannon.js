@@ -7,10 +7,15 @@
   .requires("Transform")
     .requires("Model")
 
-  .construct(function () {})
+  .construct(function ()
+  {
+    this.lift = 0.15;
+  })
 
   .initialize(function ()
   {
+    this.initialPosition = this.parent.Transform.position.clone();
+
     this.addEventListener("OnFiring", function (object)
     {
       if (object === this.parent.mother)
@@ -20,6 +25,9 @@
 
         var forward = new global.THREE.Vector3();
         t.getForward(forward);
+        forward.normalize();
+
+        forward.y += this.lift;
         forward.normalize();
 
         var worldPosition = new global.THREE.Vector3();
