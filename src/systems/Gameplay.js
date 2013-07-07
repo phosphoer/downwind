@@ -6,6 +6,10 @@
 
   .initialize(function ()
   {
+    this.seagullTimer = 0;
+    this.seagullInterval = 10;
+    this.seagullSound = new Audio("res/seagull.wav");
+
     $("#fullscreen").animate(
     {
       opacity: 0.0
@@ -28,6 +32,18 @@
       crate.Transform.position.z = (i / 13) * enemyBoat.Transform.position.z + global.Math.random() * 200 - 100;
       TANK.Game.addEntity(crate);
     }
+
+    this.addEventListener("OnEnterFrame", function (dt)
+    {
+      this.seagullTimer += dt;
+
+      if (this.seagullTimer > this.seagullInterval)
+      {
+        this.seagullSound.play();
+        this.seagullTimer = 0;
+        this.seagullInterval = 10 + global.Math.random() * 20;
+      }
+    });
 
     this.addEventListener("OnKeyPress", function (key)
     {
