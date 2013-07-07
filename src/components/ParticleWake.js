@@ -24,9 +24,7 @@
       {
         var particle = particles[i];
         var ocean = this.parent.space.getEntity("Ocean").Ocean;
-        console.log(ocean);
-        particle.position.y = (typeof ocean !== "undefined")? 
-                              ocean.getHeight(particle.position.x, particle.position.z):0;
+        particle.position.y = ocean ? ocean.getHeight(particle.position.x, particle.position.z): 0;
          ;
       }
     });

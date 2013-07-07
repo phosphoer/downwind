@@ -37,6 +37,7 @@
     particles.ParticleEmitter.randomLinearVelocity.x = 2;
     particles.ParticleEmitter.randomLinearVelocity.y = 2;
     particles.ParticleEmitter.randomLinearVelocity.z = 2;
+    particles.maxparticlesInOneFrame = 1;
     particles.ParticleEmitter.spawnArea.z = 1;
     particles.ParticleEmitter.size = 3;
     particles.ParticleForces.damping = 0.97;
