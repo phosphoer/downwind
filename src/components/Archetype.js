@@ -129,7 +129,7 @@
     particles.ParticleEmitter.linearVelocity.y = 0.1;
     particles.ParticleEmitter.linearVelocity.z = 1.0;
     particles.ParticleEmitter.spawnArea.z = 10;
-    particles.ParticleEmitter.maxparticlesInOneFrame = 1;
+    particles.ParticleEmitter.maxParticlesInOneFrame = 1;
     particles.ParticleEmitter.size = 9;
     particles.ParticleForces.damping = 0;
     particles.ParticleForces.growth = 1.005;
@@ -137,11 +137,12 @@
     particles.ParticleForces.randomForce.y = 0.0;
     particles.ParticleForces.randomForce.z = 0.4;
     particles.ParticleForces.constantForce.y = 0.05;
-
-    particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 1.0);
-    particles.ParticleGradient.gradient.add(new THREE.Color(0x2Dffff), 0.5);
-    particles.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.2);
+  
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 0.0);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.2);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0x2D96ff), 0.5);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 1.0);
+
 
   }
 
