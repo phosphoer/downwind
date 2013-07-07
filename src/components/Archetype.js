@@ -15,6 +15,8 @@
     boat.Boat.backwardSpeed = 4.4;
     boat.Boat.turnSpeed = .01;
     boat.Boat.friction = .95;
+    boat.Bouyant.wobble = true;
+    boat.Bouyant.wobbleAmount = 0.1;
 
     return boat;
   }
@@ -139,7 +141,7 @@
     particles.ParticleForces.randomForce.y = 0.0;
     particles.ParticleForces.randomForce.z = 0.4;
     particles.ParticleForces.constantForce.y = 0.05;
-  
+
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 0.0);
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1D8CC0), 0.2);
     particles.ParticleGradient.gradient.add(new THREE.Color(0x2D96ff), 0.5);
