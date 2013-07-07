@@ -23,10 +23,10 @@
 
   .initialize(function ()
   {
-    if (typeof this.parent.Hierarchy !== "undefined")
-    {
-      this.isMother = true;
-    }
+    // if (typeof this.parent.Hierarchy !== "undefined")
+    // {
+    //   this.isMother = true;
+    // }
 
     this.addEventListener("OnEnterFrame", function (dt)
     {
