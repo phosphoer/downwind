@@ -83,9 +83,8 @@
 
   TANK.createCannonBall = function (position, direction)
   {
-    var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall", "OrientToVelocity", "TimedDeath");
+    var cannonBall = TANK.createEntity("Transform", "Cube", "CannonBall", "OrientToVelocity", "TimedDeath");
     cannonBall.Transform.position.copy(position);
-    cannonBall.Model.model = Fish1;
     cannonBall.CannonBall.setVelocity(direction.clone());
     cannonBall.OrientToVelocity.velocity = cannonBall.CannonBall.velocity;
     return cannonBall;
@@ -93,8 +92,11 @@
 
   TANK.createWake = function (obj)
   {
-  	var particlesPort = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
-    if (typeof obj !== "undefined"){ obj.Hierarchy.attachNonRelative(particlesPort);}
+    var particlesPort = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
+    if (typeof obj !== "undefined")
+    {
+      obj.Hierarchy.attachNonRelative(particlesPort);
+    }
     particlesPort.Transform.position.x = 15;
     particlesPort.Transform.position.y = -15;
     particlesPort.Transform.position.z = -40;
@@ -122,7 +124,10 @@
     particlesPort.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 1.0);
 
     var particlesStarboard = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
-    if (typeof obj !== "undefined"){ obj.Hierarchy.attachNonRelative(particlesStarboard);}
+    if (typeof obj !== "undefined")
+    {
+      obj.Hierarchy.attachNonRelative(particlesStarboard);
+    }
     particlesStarboard.Transform.position.x = -15;
     particlesStarboard.Transform.position.y = -15;
     particlesStarboard.Transform.position.z = -40;
