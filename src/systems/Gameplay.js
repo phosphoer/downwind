@@ -7,31 +7,15 @@
   .initialize(function ()
   {
 
+
     $("#fullscreen").animate(
     {
       opacity: 0.0
     },
     {
-      duration: 5000
+      duration: 6000
     });
 
-    var self = this;
-
-    setTimeout(function ()
-    {
-      this.splash = $("<div class='Splash' />").appendTo($("body"));
-      setTimeout(function ()
-      {
-        this.splash.remove();
-        this.splash = $("<div class='SplashFadeOut' />").appendTo($("body"));
-
-        setTimeout(function ()
-        {
-          this.splash.remove();
-        }, 6000);
-      }, 6000);
-
-    }, 4000);
 
     var enemyBoat = TANK.createBoat();
     enemyBoat.addComponent("Wander");
@@ -48,6 +32,19 @@
       TANK.Game.addEntity(crate);
     }
 
+    this.addEventListener("OnKeyPress", function (key)
+    {
+      if (key === TANK.Q)
+      {
+        $("#ending").animate(
+        {
+          opacity: 0.8
+        },
+        {
+          duration: 8000
+        });
+      }
+    });
   });
 
 }(this, this.TANK = this.TANK ||
