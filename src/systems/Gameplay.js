@@ -6,21 +6,13 @@
 
   .initialize(function ()
   {
-    var i, j;
-    var scale = 100;
-    for (i = 0; i <= 1; ++i)
+    this.fade = $("<div class='Fade' />").appendTo($("body"));
+
+    var self = this;
+    setTimeout(function ()
     {
-      for (j = 0; j <= 1; ++j)
-      {
-        var boat = TANK.createBoat();
-        boat.addComponents("Wander");
-        boat.Model.model = EnemyShip;
-        boat.Transform.position.set(i * scale, 0, j * scale);
-        boat.Transform.scale.set(0.5, 0.5, 0.5);
-        boat.Transform.rotation.y = Math.random();
-        this.parent.addEntity(boat);
-      }
-    }
+      self.fade.remove();
+    }, 5000);
 
   });
 

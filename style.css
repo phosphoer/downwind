@@ -1,0 +1,38 @@
+html, body
+{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  cursor: default;
+  margin: 0px;
+  overflow: hidden;
+}
+
+canvas
+{
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fade
+{
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+
+@-webkit-keyframes fade /* Safari and Chrome */
+{
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+
+div.Fade
+{
+    background-color: #fffdf2;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    animation: fade 5.0s;
+    -webkit-animation: fade 5.0s; /* Safari and Chrome */
+    position: absolute;
+}
