@@ -20,6 +20,7 @@
 
         var forward = new global.THREE.Vector3();
         t.getForward(forward);
+        forward.normalize();
 
         var worldPosition = new global.THREE.Vector3();
         t.getWorldPosition(worldPosition);
@@ -28,8 +29,9 @@
         this.space.addEntity(TANK.createCannonBall(worldPosition, forward));
 
         var blastEffect = TANK.createCannonBlast(worldPosition);
+        var originalMagnitude = blastEffect.ParticleEmitter.linearVelocity.length();
         blastEffect.ParticleEmitter.linearVelocity.copy(forward);
-        blastEffect.ParticleEmitter.linearVelocity.multiplyScalar(5);
+        blastEffect.ParticleEmitter.linearVelocity.multiplyScalar(originalMagnitude);
         this.space.addEntity(blastEffect);
       }
     });
