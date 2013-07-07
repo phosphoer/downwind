@@ -6,6 +6,13 @@
 
   .initialize(function ()
   {
+    $("#fullscreen").animate(
+    {
+      opacity: 0.0
+    },
+    {
+      duration: 6000
+    });
 
     var enemyBoat = TANK.createBoat();
     enemyBoat.addComponent("Wander");
@@ -22,6 +29,19 @@
       TANK.Game.addEntity(crate);
     }
 
+    this.addEventListener("OnKeyPress", function (key)
+    {
+      if (key === TANK.Q)
+      {
+        $("#ending").animate(
+        {
+          opacity: 0.8
+        },
+        {
+          duration: 8000
+        });
+      }
+    });
   });
 
 }(this, this.TANK = this.TANK ||
