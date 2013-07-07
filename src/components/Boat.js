@@ -49,7 +49,7 @@
 
       if (wind && this.flagObject)
       {
-        this.flagObject.Transform.rotation.y = global.Math.atan2(wind.direction.z, wind.direction.x) - this.parent.Transform.rotation.y;
+        this.flagObject.Transform.rotation.y = global.Math.atan2(wind.direction.z, wind.direction.x) - this.parent.Transform.rotation.y + global.Math.PI / 2;
       }
 
       if (this.throttle !== 0)
