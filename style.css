@@ -51,7 +51,7 @@ div.Fade
 
 div.Splash
 {
-    display: inline-block;  
+    display: inline-block;
     background-image:url('res/splash.png');
     background-repeat: no-repeat;
     background-position: center center;
@@ -62,13 +62,13 @@ div.Splash
     position: absolute;
     text-align: center;
     font-size: 44px;
-    animation: fadeOut 4.0s;
-    -webkit-animation: fadeOut 4.0s; /* Safari and Chrome */      
+    animation: fadeOut 6.0s;
+    -webkit-animation: fadeOut 6.0s; /* Safari and Chrome */
 }
 
 div.SplashFadeOut
 {
-    display: inline-block;  
+    display: inline-block;
     background-image:url('res/splash.png');
     background-repeat: no-repeat;
     background-position: center center;
@@ -79,6 +79,6 @@ div.SplashFadeOut
     position: absolute;
     text-align: center;
     font-size: 44px;
-    animation: fadeIn 4.0s;
-    -webkit-animation: fadeIn 4.0s; /* Safari and Chrome */      
+    animation: fadeIn 6.0s;
+    -webkit-animation: fadeIn 6.0s; /* Safari and Chrome */
 }
