@@ -9,8 +9,8 @@
   .construct(function ()
   {
     this.velocity = new THREE.Vector3();
-    this.defaultSpeed = 100;
-    this.gravity = -6;
+    this.defaultSpeed = 180;
+    this.gravity = -90;
 
     this.setVelocity = function (direction, speed)
     {
