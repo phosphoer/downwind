@@ -65,3 +65,20 @@ div.Splash
     animation: fadeOut 4.0s;
     -webkit-animation: fadeOut 4.0s; /* Safari and Chrome */      
 }
+
+div.SplashFadeOut
+{
+    display: inline-block;  
+    background-image:url('res/splash.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    font-size: 44px;
+    animation: fadeIn 4.0s;
+    -webkit-animation: fadeIn 4.0s; /* Safari and Chrome */      
+}

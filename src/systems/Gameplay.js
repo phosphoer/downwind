@@ -16,6 +16,17 @@
       setTimeout(function ()
       {
         this.splash = $("<div class='Splash' />").appendTo($("body"));
+        setTimeout(function ()
+        {
+          this.splash.remove();
+          this.splash = $("<div class='SplashFadeOut' />").appendTo($("body"));
+
+          setTimeout(function ()
+          {
+            this.splash.remove();
+          }, 4000);
+        }, 4000);
+
       }, 4000);
 
     }, 5000);
