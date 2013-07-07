@@ -55,17 +55,20 @@
       if (this.isMother) 
       {
           // terrible code, sorry
-          var particleEmitter = this.parent.Hierarchy.children[0].ParticleEmitter;
+          var particleEmitter= this.parent.Hierarchy.children[0].ParticleEmitter;
           if (this.throttle !== 0)
           {
-            particleEmitter.emitRate = 50 * vel.length() + 10.001;
-            particleEmitter.linearVelocity.x = -vel.x;
+
+            particleEmitter.emitRate = 10 * vel.length() + 3.001;
+
+            vel.normalize();
+            particleEmitter.linearVelocity.x = -vel.x * 2;
             particleEmitter.linearVelocity.y = -1.0;
-            particleEmitter.linearVelocity.z = -vel.z;
+            particleEmitter.linearVelocity.z = -vel.z * 2;
           }
           else
           {
-            particleEmitter.emitRate = 0.001;
+            //particleEmitter.emitRate = 0.001;
           }
       }
 
