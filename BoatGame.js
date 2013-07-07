@@ -46,8 +46,6 @@ function main()
   // }
 
 
-
-  /*
   {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces");
     boat.Hierarchy.attachNonRelative(particles);
@@ -75,7 +73,6 @@ function main()
     // particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
     // particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
   }
-  */
 
   space.addEntity(boat, "Boat");
 

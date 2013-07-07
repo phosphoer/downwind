@@ -86,14 +86,18 @@
     var cannonBall = TANK.createEntity("Transform", "Cube", "CannonBall", "OrientToVelocity", "TimedDeath");
     cannonBall.Transform.position.copy(position);
     cannonBall.CannonBall.setVelocity(direction.clone());
+    cannonBall.Cube.material.color.setRGB(0, 0, 0);
     cannonBall.OrientToVelocity.velocity = cannonBall.CannonBall.velocity;
     return cannonBall;
   }
 
   TANK.createWake = function (obj)
   {
-  	var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
-    if (typeof obj !== "undefined"){ obj.Hierarchy.attachNonRelative(particles);}
+    var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
+    if (typeof obj !== "undefined")
+    {
+      obj.Hierarchy.attachNonRelative(particles);
+    }
     particles.Transform.position.x = 0;
     particles.Transform.position.y = -35;
     particles.Transform.position.z = -40;
