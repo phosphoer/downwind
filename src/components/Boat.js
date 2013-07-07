@@ -59,12 +59,12 @@
         if (this.throttle !== 0)
         {
 
-            particleEmitter.emitRate = 10 * vel.length() + 3.001;
+          particleEmitter.emitRate = 10 * vel.length() + 3.001;
 
-            vel.normalize();
-            particleEmitter.linearVelocity.x = -vel.x * 2;
+          vel.normalize();
+          particleEmitter.linearVelocity.x = -vel.x * 2;
           particleEmitter.linearVelocity.y = -1.0;
-            particleEmitter.linearVelocity.z = -vel.z * 2;
+          particleEmitter.linearVelocity.z = -vel.z * 2;
         }
         else
         {
@@ -83,16 +83,6 @@
       this.angularVelocity *= this.friction;
 
       t.rotation.y += this.angularVelocity * dt;
-
-      // Float on Ocean
-      var obj = this.space.getEntity("Ocean");
-      if (obj)
-      {
-        var height = obj.Ocean.getHeight(t.position.x, t.position.z);
-        height += (this.parent.Model.sizeY * this.parent.Transform.scale.y) * 0.5 * 0.8;
-        t.position.y += (height - t.position.y) * 0.08;
-      }
-
     });
   });
 

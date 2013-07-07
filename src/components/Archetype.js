@@ -4,7 +4,7 @@
 
   TANK.createBoat = function ()
   {
-    var boat = TANK.createEntity("Transform", "Model", "Boat", "ModelCollider", "Cannon", "Hierarchy");
+    var boat = TANK.createEntity("Transform", "Model", "Boat", "ModelCollider", "Cannon", "Bouyant", "Hierarchy");
 
     boat.ModelCollider.debugDraw = false;
     boat.Model.model = PirateShip;
@@ -17,6 +17,23 @@
     boat.Boat.friction = .95;
 
     return boat;
+  }
+
+  TANK.createCrate = function ()
+  {
+    var crate = TANK.createEntity("Transform", "Model", "Bouyant");
+
+    crate.Model.model = Crate;
+    crate.Transform.rotation.x = Math.random() * Math.PI * 2;
+    crate.Transform.rotation.y = Math.random() * Math.PI * 2;
+    crate.Transform.rotation.z = Math.random() * Math.PI * 2;
+
+    var size = 0.3 + Math.random() * 1;
+    crate.Transform.scale.x = size;
+    crate.Transform.scale.y = size;
+    crate.Transform.scale.z = size;
+
+    return crate;
   }
 
   TANK.createCannon = function ()
