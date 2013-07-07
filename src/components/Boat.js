@@ -39,13 +39,24 @@
       var t = this.parent.Transform;
       t.getForward(this.forwardCache);
 
+      var wind = this.space.Wind;
+
+      var windComponent = wind ? wind.direction.dot(this.forwardCache) : 1;
       var forwardForce = this.forwardCache.dot(this.velocity);
+
+      if (windComponent < 0.5)
+        windComponent = 0.5;
+
+      if (wind && this.flagObject)
+      {
+        this.flagObject.Transform.rotation.y = global.Math.atan2(wind.direction.z, wind.direction.x) - this.parent.Transform.rotation.y;
+      }
 
       if (this.throttle !== 0)
       {
         var accel = this.throttle > 0 ? this.forwardSpeed : -this.backwardSpeed;
         var force = this.forwardCache.clone();
-        force.multiplyScalar(accel * dt);
+        force.multiplyScalar(accel * dt * windComponent);
         this.velocity.addVectors(this.velocity, force);
       }
 

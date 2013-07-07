@@ -7,7 +7,7 @@
   .construct(function ()
   {
     this.et = 0;
-    this.direction = new global.THREE.Vector3(1, 0, 0);
+    this.direction = new global.THREE.Vector3(0, 0, 1);
   })
 
   .initialize(function ()
