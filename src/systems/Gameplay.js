@@ -24,8 +24,8 @@
           setTimeout(function ()
           {
             this.splash.remove();
-          }, 4000);
-        }, 4000);
+          }, 6000);
+        }, 6000);
 
       }, 4000);
 
