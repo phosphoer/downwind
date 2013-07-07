@@ -6,8 +6,6 @@
 
   .initialize(function ()
   {
-
-
     $("#fullscreen").animate(
     {
       opacity: 0.0
@@ -15,7 +13,6 @@
     {
       duration: 6000
     });
-
 
     var enemyBoat = TANK.createBoat();
     enemyBoat.addComponent("Wander");

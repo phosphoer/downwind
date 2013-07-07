@@ -13,7 +13,7 @@
 
     boat.Boat.forwardSpeed = 100;
     boat.Boat.backwardSpeed = 40;
-    boat.Boat.turnSpeed = .006;
+    boat.Boat.turnSpeed = .008;
     boat.Boat.friction = .95;
     boat.Bouyant.wobble = true;
     boat.Bouyant.wobbleAmount = 0.1;
