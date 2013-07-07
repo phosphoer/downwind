@@ -110,14 +110,14 @@
 
   TANK.createWake = function (obj)
   {
-    var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
+    var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient", "ParticleWake");
     if (typeof obj !== "undefined")
     {
       obj.Hierarchy.attachNonRelative(particles);
     }
     particles.Transform.position.x = 0;
     particles.Transform.position.y = -30;
-    particles.Transform.position.z = -36;
+    particles.Transform.position.z = -25;
     particles.ParticleEmitter.emitCount = 0;
     particles.ParticleEmitter.emitRate = 0.001;
     particles.ParticleEmitter.color.setRGB(.7, .7, 1);
@@ -129,7 +129,7 @@
     particles.ParticleEmitter.linearVelocity.z = 1.0;
     particles.ParticleEmitter.spawnArea.z = 10;
     particles.ParticleEmitter.maxparticlesInOneFrame = 1;
-    particles.ParticleEmitter.size = 8;
+    particles.ParticleEmitter.size = 9;
     particles.ParticleForces.damping = 0;
     particles.ParticleForces.growth = 1.005;
     particles.ParticleForces.randomForce.x = 0.4;
