@@ -8,7 +8,7 @@
 
   .construct(function ()
   {
-    this.dayLengthSeconds = 120;
+    this.dayLengthSeconds = 520;
     this.time = 0;
 
     this.sunDistance = 2000;

@@ -54,7 +54,7 @@ function main()
     particles.ParticleEmitter.emitCount = 0;
     particles.ParticleEmitter.emitRate = 20;
     particles.ParticleEmitter.lifetime = 2;
-    particles.ParticleEmitter.color.setRGB(0, 0, 1);
+    particles.ParticleEmitter.color.setRGB(0.2, 0.2, 0.7);
     particles.ParticleEmitter.randomLinearVelocity.x = 0.01;
     particles.ParticleEmitter.randomLinearVelocity.y = 0.05;
     particles.ParticleEmitter.randomLinearVelocity.z = 0.01;
