@@ -15,6 +15,7 @@
     this.turnSpeed = 0;
     this.velocity = new global.THREE.Vector3();
     this.angularVelocity = 0;
+    this.health = 100;
 
     this.isMother = false;
 
@@ -26,6 +27,11 @@
     if (typeof this.parent.Hierarchy !== "undefined")
     {
       this.isMother = true;
+    }
+
+    this.onCollide = function (other)
+    {
+      this.health -= 1;
     }
 
     this.addEventListener("OnEnterFrame", function (dt)
@@ -59,12 +65,12 @@
         if (this.throttle !== 0)
         {
 
-            particleEmitter.emitRate = 8 * vel.length() + 1.001;
+          particleEmitter.emitRate = 8 * vel.length() + 1.001;
 
-            vel.normalize();
-            particleEmitter.linearVelocity.x = -vel.x * 2;
-            particleEmitter.linearVelocity.y = 0;
-            particleEmitter.linearVelocity.z = -vel.z * 2;
+          vel.normalize();
+          particleEmitter.linearVelocity.x = -vel.x * 2;
+          particleEmitter.linearVelocity.y = 0;
+          particleEmitter.linearVelocity.z = -vel.z * 2;
         }
         else
         {

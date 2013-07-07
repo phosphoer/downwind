@@ -4,8 +4,7 @@
 
   TANK.registerComponent("Cannon")
 
-  .requires("Transform")
-    .requires("Model")
+  .requires("Transform, Model")
 
   .construct(function ()
   {

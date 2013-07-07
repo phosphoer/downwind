@@ -4,8 +4,7 @@
 
   TANK.registerComponent("CannonBall")
 
-  .requires("Transform")
-    .requires("TimedDeath")
+  .requires("Transform, TimedDeath")
 
   .construct(function ()
   {
