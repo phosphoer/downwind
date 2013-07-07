@@ -92,7 +92,9 @@
         return (global.Math.random() - 0.5) * self.shake;
       };
 
-      self.camera.position.copy(targetTx.position);
+      self.camera.position.x = targetTx.position.x;
+      self.camera.position.y = 50;
+      self.camera.position.z = targetTx.position.z;
 
       self.camera.position.x += offsetX + generateShake();
       self.camera.position.y += offsetY + generateShake();
