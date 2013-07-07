@@ -40,9 +40,7 @@
     var transform = this.parent.Transform;
 
     this.mesh = new THREE.LOD();
-    this.mesh.position = transform.position;
-    this.mesh.rotation = transform.rotation;
-    this.mesh.scale = transform.scale;
+
 
     var mesh = BuildVoxelMesh(model,
     {
@@ -73,9 +71,14 @@
       this.mesh.addLevel(mesh, i * 500);
     }
 
-    this.space.Graphics.scene.add(this.mesh);
+    transform.object3d.add(this.mesh);
 
   })
+
+  .destruct(function ()
+  {
+    this.mesh.parent.remove(this.mesh);
+  });
 
 }(this, this.TANK = this.TANK ||
 {}));

@@ -14,7 +14,7 @@
       {
         var boat = TANK.createBoat();
         boat.addComponents("Wander");
-        boat.Model.materialDiffuse = 0x404040;
+        boat.Model.model = EnemyShip;
         boat.Transform.position.set(i * scale, 0, j * scale);
         boat.Transform.scale.set(0.5, 0.5, 0.5);
         boat.Transform.rotation.y = Math.random();
