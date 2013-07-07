@@ -75,5 +75,10 @@
 
   })
 
+  .destruct(function ()
+  {
+    this.mesh.parent.remove(this.mesh);
+  });
+
 }(this, this.TANK = this.TANK ||
 {}));

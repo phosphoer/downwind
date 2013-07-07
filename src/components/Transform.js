@@ -116,6 +116,11 @@
     {
       this.space.Graphics.scene.add(this.object3d);
     }
+  })
+
+  .destruct(function ()
+  {
+    this.object3d.parent.remove(this.object3d);
   });
 
 }(this, this.TANK = this.TANK ||
