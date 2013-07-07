@@ -14,7 +14,7 @@ function main()
 
   var starboardCannon = TANK.createCannon();
   boat.Hierarchy.attachNonRelative(starboardCannon);
-  starboardCannon.Transform.position.set(11, -20, 0);
+  starboardCannon.Transform.position.set(13, -20, 0);
   starboardCannon.Transform.rotation.y = Math.PI * 0.5;
   starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
 
