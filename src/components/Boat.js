@@ -52,21 +52,21 @@
       vel.multiplyScalar(dt);
       t.position.addVectors(t.position, vel);
 
-      if (this.isMother) 
+      if (this.isMother)
       {
-          // terrible code, sorry
-          var particleEmitter = this.parent.Hierarchy.children[0].ParticleEmitter;
-          if (this.throttle !== 0)
-          {
-            particleEmitter.emitRate = 50 * vel.length() + 10.001;
-            particleEmitter.linearVelocity.x = -vel.x;
-            particleEmitter.linearVelocity.y = -1.0;
-            particleEmitter.linearVelocity.z = -vel.z;
-          }
-          else
-          {
-            particleEmitter.emitRate = 0.001;
-          }
+        // terrible code, sorry
+        var particleEmitter = this.parent.Hierarchy.children[0].ParticleEmitter;
+        if (this.throttle !== 0)
+        {
+          particleEmitter.emitRate = 50 * vel.length() + 10.001;
+          particleEmitter.linearVelocity.x = -vel.x;
+          particleEmitter.linearVelocity.y = -1.0;
+          particleEmitter.linearVelocity.z = -vel.z;
+        }
+        else
+        {
+          particleEmitter.emitRate = 0.001;
+        }
       }
 
       if (this.turn !== 0)
@@ -86,7 +86,7 @@
       if (obj)
       {
         var height = obj.Ocean.getHeight(t.position.x, t.position.z);
-        height += this.parent.Model.sizeY * this.parent.Model.mesh.scale.y * 0.5 * 0.8;
+        height += this.parent.Model.sizeY * this.parent.Model.mesh.scale.y * 0.5 * 0.86;
         t.position.y += (height - t.position.y) * 0.08;
       }
 
