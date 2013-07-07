@@ -19,6 +19,9 @@
     self.lifetime = 5;
     self.lifetimeVariance = 1;
 
+    // Zero means as many as we want
+    self.maxParticlesInOneFrame = 0;
+
     self.size = 1;
 
     self.spawnArea = new global.THREE.Vector3(5, 5, 5);
@@ -65,9 +68,16 @@
 
       self.emitTime += dt;
 
+      var emittedThisFrame = 0;
+
       // If we have no emit count, or we're below our emit count (and we have enough time to emit a particle!)
       while ((self.emitCount == 0 || self.particlesEmitted < self.emitCount) && self.emitTime > singleEmitTime)
       {
+        if (self.maxParticlesInOneFrame > 0 && emittedThisFrame >= self.maxParticlesInOneFrame)
+        {
+          break;
+        }
+
         self.emitTime -= singleEmitTime;
 
         var particle = null;
@@ -112,6 +122,12 @@
 
         self.particles.push(particle);
         ++self.particlesEmitted;
+        ++emittedThisFrame;
+      }
+
+      if (self.emitTime > singleEmitTime)
+      {
+        self.emitTime %= singleEmitTime;
       }
 
       // Update the lifetime of all of the particles
