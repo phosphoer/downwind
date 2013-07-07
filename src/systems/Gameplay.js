@@ -31,6 +31,23 @@
 
     }, 5000);
 
+    var enemyBoat = TANK.createBoat();
+    enemyBoat.Model.model = EnemyShip;
+    enemyBoat.Transform.position.x = 200;
+    enemyBoat.Transform.position.z = 700;
+    enemyBoat.Boat.throttle = 1;
+    enemyBoat.Boat.forwardSpeed = 10;
+    TANK.Game.addEntity(enemyBoat, "EnemyShip");
+
+    for (var i = 0; i < 10; ++i)
+    {
+      var crate = TANK.createCrate();
+      crate.Transform.position.x = Math.random() * 200;
+      crate.Transform.position.z = Math.random() * 200;
+      crate.Bouyant.percent = 0.3 + Math.random() * 0.3;
+      TANK.Game.addEntity(crate);
+    }
+
   });
 
 }(this, this.TANK = this.TANK ||
