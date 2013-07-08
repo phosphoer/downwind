@@ -7,6 +7,7 @@
     var boat = TANK.createEntity("Transform", "Model", "Boat", "ModelCollider", "Bouyant", "Hierarchy");
 
     boat.ModelCollider.debugDraw = false;
+    boat.ModelCollider.scale = 0.6;
     boat.Model.model = PirateShip;
 
     TANK.createWake(boat);
@@ -131,11 +132,12 @@
 
   TANK.createCannonBall = function (position, direction)
   {
-    var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall", "OrientToVelocity", "TimedDeath");
+    var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall", "OrientToVelocity", "ModelCollider", "TimedDeath");
     cannonBall.Transform.position.copy(position);
     cannonBall.CannonBall.setVelocity(direction.clone());
 
     cannonBall.Model.model = CannonBall;
+    cannonBall.ModelCollider.debugDraw = false;
     cannonBall.Transform.scale.set(0.25, 0.25, 0.25);
 
 

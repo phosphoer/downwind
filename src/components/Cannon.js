@@ -56,7 +56,9 @@
 
       var boatVelocity = object.Boat.velocity;
 
-      this.space.addEntity(TANK.createCannonBall(worldPosition, forward));
+      var ball = TANK.createCannonBall(worldPosition, forward);
+      ball.CannonBall.owner = object;
+      this.space.addEntity(ball);
 
       var blastEffect = TANK.createCannonBlast(worldPosition, boatVelocity);
       var originalMagnitude = blastEffect.ParticleEmitter.linearVelocity.length();

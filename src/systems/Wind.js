@@ -27,7 +27,7 @@
         this.windChangeInterval = 10 + global.Math.random() * 20;
       }
 
-      this.direction.lerp(this.newDirection, 0.01);
+      this.direction.lerp(this.newDirection, 0.005);
     });
   });
 

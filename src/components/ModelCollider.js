@@ -42,9 +42,9 @@
     var temp = new THREE.Vector3();
     this.addEventListener("OnEnterFrame", function (dt)
     {
-      temp.x = t.scale.x * this.parent.Model.model.sizeX;
-      temp.y = t.scale.y * this.parent.Model.model.sizeY;
-      temp.z = t.scale.z * this.parent.Model.model.sizeZ;
+      temp.x = t.scale.x * this.parent.Model.model.sizeX * this.scale;
+      temp.y = t.scale.y * this.parent.Model.model.sizeY * this.scale;
+      temp.z = t.scale.z * this.parent.Model.model.sizeZ * this.scale;
 
       this.radius = temp.length() / 2;
       this.mesh.scale.set(this.radius, this.radius, this.radius);

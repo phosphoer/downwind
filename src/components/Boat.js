@@ -51,7 +51,11 @@
 
     this.onCollide = function (other)
     {
-      this.health -= 1;
+      if (other.parent.CannonBall && other.parent.CannonBall.owner != this.parent)
+      {
+        this.space.removeEntity(other.parent);
+        this.health -= 10;
+      }
     }
 
     this.addEventListener("OnEnterFrame", function (dt)
@@ -60,6 +64,11 @@
 
       var t = this.parent.Transform;
       t.getForward(this.forwardCache);
+
+      if (this.health <= 0)
+      {
+        this.parent.Bouyant.sinking = true;
+      }
 
       var wind = this.space.Wind;
 
@@ -120,18 +129,7 @@
 
       // Apply angular friction
       this.angularVelocity *= this.friction;
-
       t.rotation.y += this.angularVelocity * dt;
-
-      // Float on Ocean
-      var obj = this.space.getEntity("Ocean");
-      if (obj)
-      {
-        var height = obj.Ocean.getHeight(t.position.x, t.position.z);
-        height += (this.parent.Model.sizeY * this.parent.Transform.scale.y) * 0.5 * 0.8;
-        t.position.y += (height - t.position.y) * 0.08;
-      }
-
     });
   });
 
