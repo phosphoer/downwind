@@ -8,7 +8,7 @@
 
   .construct(function ()
   {
-    this.lift = 0.15;
+    this.lift = 0.35;
     this.returnSmoothing = 0.1;
     this.recoil = 2;
     this.cannonIndex = 0;

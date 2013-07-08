@@ -30,10 +30,7 @@
       {
         this.forward = 1;
       }
-      else if (key === TANK.DOWN_ARROW || key === TANK.S)
-      {
-        this.backward = 1;
-      }
+
 
     });
 
@@ -50,10 +47,6 @@
       else if (key === TANK.UP_ARROW || key === TANK.W)
       {
         this.forward = 0;
-      }
-      else if (key === TANK.DOWN_ARROW || key === TANK.S)
-      {
-        this.backward = 0;
       }
       else if (key === TANK.SPACE || key === TANK.F)
       {

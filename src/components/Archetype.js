@@ -11,10 +11,10 @@
 
     TANK.createWake(boat);
 
-    boat.Boat.forwardSpeed = 100;
-    boat.Boat.backwardSpeed = 40;
-    boat.Boat.turnSpeed = .008;
-    boat.Boat.friction = .95;
+    boat.Boat.forwardSpeed = 25;
+    boat.Boat.backwardSpeed = 0;
+    boat.Boat.turnSpeed = .0025;
+    boat.Boat.friction = .99;
     boat.Bouyant.wobble = true;
     boat.Bouyant.wobbleAmount = 0.1;
 
@@ -106,11 +106,11 @@
     particles.Transform.position.copy(position);
     particles.ParticleEmitter.emitCount = 10;
     particles.ParticleEmitter.emitRate = 0;
-    particles.ParticleEmitter.lifetime = 0.6;
-    particles.ParticleEmitter.randomLinearVelocity.x = 0.5;
-    particles.ParticleEmitter.randomLinearVelocity.y = 0.5;
-    particles.ParticleEmitter.randomLinearVelocity.z = 0.5;
-    particles.ParticleEmitter.linearVelocity.z = 3;
+    particles.ParticleEmitter.lifetime = 0.46;
+    particles.ParticleEmitter.randomLinearVelocity.x = 0.1;
+    particles.ParticleEmitter.randomLinearVelocity.y = 0.1;
+    particles.ParticleEmitter.randomLinearVelocity.z = 0.1;
+    particles.ParticleEmitter.linearVelocity.z = .4;
 
     particles.ParticleEmitter.spawnArea.x = 0.3;
     particles.ParticleEmitter.spawnArea.y = 0.3;
@@ -131,10 +131,14 @@
 
   TANK.createCannonBall = function (position, direction)
   {
-    var cannonBall = TANK.createEntity("Transform", "Cube", "CannonBall", "OrientToVelocity", "TimedDeath");
+    var cannonBall = TANK.createEntity("Transform", "Model", "CannonBall", "OrientToVelocity", "TimedDeath");
     cannonBall.Transform.position.copy(position);
     cannonBall.CannonBall.setVelocity(direction.clone());
-    cannonBall.Cube.material.color.setRGB(0, 0, 0);
+
+    cannonBall.Model.model = CannonBall;
+    cannonBall.Transform.scale.set(0.25, 0.25, 0.25);
+
+
     cannonBall.OrientToVelocity.velocity = cannonBall.CannonBall.velocity;
     return cannonBall;
   }
@@ -167,7 +171,7 @@
     particles.ParticleForces.randomForce.y = 0.0;
     particles.ParticleForces.randomForce.z = 0.4;
     particles.ParticleForces.constantForce.y = 0.05;
-    particles.ParticleForces.lifetime = 3;
+    particles.ParticleForces.lifetime = 2.5;
     particles.ParticleForces.lifetimeVariance = 0.5;
 
     particles.ParticleGradient.gradient.add(new THREE.Color(0x1C6BA0), 0.0);
