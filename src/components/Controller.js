@@ -50,7 +50,22 @@
       }
       else if (key === TANK.SPACE || key === TANK.F)
       {
-        this.parent.Boat.attemptFire();
+        var camera = this.space.getEntity("Camera");
+
+        var camForward = new global.THREE.Vector3();
+        camera.Transform.getForward(camForward);
+        camForward.y = 0;
+        camForward.normalize();
+
+        var boatForward = new global.THREE.Vector3();
+        this.parent.Transform.getForward(boatForward);
+        boatForward.y = 0;
+        boatForward.normalize();
+
+        boatForward.cross(camForward);
+
+
+        this.parent.Boat.attemptFire(boatForward.y);
       }
     });
 

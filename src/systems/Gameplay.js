@@ -48,6 +48,14 @@
       this.play();
     }, false);
 
+    this.music = new Audio("res/BoatGameSong.mp3");
+    this.music.play();
+    this.music.addEventListener("ended", function ()
+    {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+
     $("#fullscreen").animate(
     {
       opacity: 0.0
@@ -62,10 +70,13 @@
     }, 4000);
 
     var enemyBoat = TANK.createBoat();
+    enemyBoat.addComponent("Light");
+    enemyBoat.Light.diffuse = 0xFFE0E0;
     enemyBoat.addComponent("Wander");
     enemyBoat.Model.model = EnemyShip;
     enemyBoat.Transform.position.x = 200;
     enemyBoat.Transform.position.z = 800;
+    enemyBoat.Light.offset.y = 20;
     TANK.Game.addEntity(enemyBoat, "EnemyShip");
 
     for (var i = 0; i < 15; ++i)

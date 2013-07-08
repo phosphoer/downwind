@@ -2,7 +2,7 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Gameplay", "Stats");
+  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Gameplay");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat(true);
@@ -27,33 +27,26 @@ function main()
   // Hack to access flag
   boat.Boat.flagObject = flagProxy;
 
-  {
-    var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces");
-    boat.Hierarchy.attachNonRelative(particles);
-    particles.Transform.position.y = 100;
-    particles.Transform.position.z = 40;
-    particles.ParticleEmitter.emitCount = 0;
-    particles.ParticleEmitter.emitRate = 20;
-    particles.ParticleEmitter.lifetime = 2;
-    particles.ParticleEmitter.color.setRGB(0.2, 0.2, 0.7);
-    particles.ParticleEmitter.randomLinearVelocity.x = 0.01;
-    particles.ParticleEmitter.randomLinearVelocity.y = 0.08;
-    particles.ParticleEmitter.randomLinearVelocity.z = 0.01;
-    particles.ParticleEmitter.linearVelocity.y = -10;
-    particles.ParticleEmitter.linearVelocity.x = -0.3;
-    particles.ParticleEmitter.linearVelocity.z = -1.5;
-    particles.ParticleEmitter.spawnArea.z = 300;
-    particles.ParticleEmitter.spawnArea.x = 300;
-    particles.ParticleEmitter.size = 2;
-    particles.ParticleForces.constantForce.y = -0.05;
-    particles.ParticleForces.damping = 1;
-    particles.ParticleForces.growth = 0.99;
-
-    // particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
-    // particles.ParticleGradient.gradient.add(new THREE.Color(0xffff00), 0.2);
-    // particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
-    // particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
-  }
+  var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces");
+  boat.Hierarchy.attachNonRelative(particles);
+  particles.Transform.position.y = 100;
+  particles.Transform.position.z = 40;
+  particles.ParticleEmitter.emitCount = 0;
+  particles.ParticleEmitter.emitRate = 20;
+  particles.ParticleEmitter.lifetime = 2;
+  particles.ParticleEmitter.color.setRGB(0.2, 0.2, 0.7);
+  particles.ParticleEmitter.randomLinearVelocity.x = 0.01;
+  particles.ParticleEmitter.randomLinearVelocity.y = 0.08;
+  particles.ParticleEmitter.randomLinearVelocity.z = 0.01;
+  particles.ParticleEmitter.linearVelocity.y = -10;
+  particles.ParticleEmitter.linearVelocity.x = -0.3;
+  particles.ParticleEmitter.linearVelocity.z = -1.5;
+  particles.ParticleEmitter.spawnArea.z = 300;
+  particles.ParticleEmitter.spawnArea.x = 300;
+  particles.ParticleEmitter.size = 2;
+  particles.ParticleForces.constantForce.y = -0.05;
+  particles.ParticleForces.damping = 1;
+  particles.ParticleForces.growth = 0.99;
 
   space.addEntity(boat, "Boat");
 
@@ -64,7 +57,6 @@ function main()
   camera.Camera.target = "Boat";
   space.addEntity(camera, "Camera");
   camera.Camera.activate();
-
 
   TANK.start();
 }

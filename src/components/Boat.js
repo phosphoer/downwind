@@ -39,12 +39,10 @@
       this.isMother = true;
     }
 
-    this.attemptFire = function ()
+    this.attemptFire = function (yaw)
     {
       if (this.canfire && this.timer > this.fireTime)
       {
-        var camera = this.space.getEntity("Camera");
-        var yaw = camera.Camera.yaw;
         this.space.dispatchEvent("OnAttemptFire", this.parent, yaw, this.fireCount % this.cannonsPerSide);
         this.timer = 0;
         ++this.fireCount;

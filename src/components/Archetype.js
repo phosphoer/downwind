@@ -105,6 +105,31 @@
     return particles;
   }
 
+  TANK.createSplash = function (position, color)
+  {
+    var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "TimedDeath");
+    particles.Transform.position.copy(position);
+    particles.Transform.y += 30;
+    particles.ParticleEmitter.emitCount = 20;
+    particles.ParticleEmitter.emitRate = 0;
+    particles.ParticleEmitter.lifetime = 1.8;
+    particles.ParticleEmitter.lifetimeVariance = 0.8;
+    particles.ParticleEmitter.randomLinearVelocity.x = .3;
+    particles.ParticleEmitter.randomLinearVelocity.y = .9;
+    particles.ParticleEmitter.randomLinearVelocity.z = .3;
+    particles.maxparticlesInOneFrame = 1;
+    particles.ParticleEmitter.spawnArea.z = .5;
+    particles.ParticleEmitter.size = 2.5;
+    //particles.ParticleForces.damping = 0.97;
+    particles.ParticleForces.growth = .999;
+    particles.ParticleForces.randomForce.x = 0.4;
+    particles.ParticleForces.randomForce.y = 0.4;
+    particles.ParticleForces.randomForce.z = 0.4;
+    particles.TimedDeath.time = 8;
+    particles.ParticleEmitter.color.setHex(color);
+    return particles;
+  }
+
   TANK.createCannonBlast = function (position)
   {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient", "TimedDeath");

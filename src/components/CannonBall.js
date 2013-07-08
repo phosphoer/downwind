@@ -40,6 +40,13 @@
 
     this.splash = function ()
     {
+      var entity;
+      entity = TANK.createSplash(this.parent.Transform.position, 0x1C6BA0);
+      this.space.addEntity(entity);
+
+      entity = TANK.createSplash(this.parent.Transform.position, 0x4B96C9);
+      this.space.addEntity(entity);
+
       this.space.removeEntity(this.parent);
       this.space.Gameplay.splashSound.play();
     }
