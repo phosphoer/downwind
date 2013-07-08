@@ -67,7 +67,7 @@
       blastEffect.ParticleEmitter.linearVelocity.multiplyScalar(originalMagnitude);
 
       var partialVelocity = boatVelocity.clone();
-      partialVelocity.multiplyScalar(0.5 * (1 / 60.0));
+      partialVelocity.multiplyScalar((1 / 60.0));
       blastEffect.ParticleEmitter.linearVelocity.add(partialVelocity);
 
       this.space.addEntity(blastEffect);
