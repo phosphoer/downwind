@@ -32,6 +32,8 @@
 
   .initialize(function ()
   {
+    this.inrange = false;
+
     this.seagullTimer = 0;
     this.seagullInterval = 10;
     this.seagullSound = new Audio("res/seagull.wav");
@@ -73,6 +75,21 @@
 
     this.addEventListener("OnEnterFrame", function (dt)
     {
+      if (this.inrange === false)
+      {
+        var enemy = TANK.Game.getEntity("EnemyShip");
+        var player = TANK.Game.getEntity("Boat");
+
+        var d = enemy.Transform.position.distanceTo(player.Transform.position);
+        if (d < 300)
+        {
+          this.inrange = true;
+          enemy.Boat.canfire = true;
+          player.Boat.canfire = true;
+          displayPopup("#splashtext", "Spacebar to fire cannons", 4000, 1000);
+        }
+      }
+
       this.seagullTimer += dt;
 
       if (this.seagullTimer > this.seagullInterval)
@@ -81,6 +98,8 @@
         this.seagullTimer = 0;
         this.seagullInterval = 10 + global.Math.random() * 20;
       }
+
+
     });
 
     this.addEventListener("OnKeyPress", function (key)
