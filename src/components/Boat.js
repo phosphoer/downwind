@@ -70,8 +70,43 @@
       if (this.health <= 0)
       {
         this.parent.Bouyant.sinking = true;
+        if (this.fire)
+        {
+          this.fire.ParticleEmitter.emitCount = 1000;
+        }
         if (this.parent.Controller)
           this.parent.removeComponent("Controller");
+      }
+
+      if (this.health <= 50 && !this.critical)
+      {
+        this.critical = true;
+        var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
+        this.fire = particles;
+        TANK.Game.addEntity(particles);
+        particles.Transform.position.x = this.parent.Transform.position.x;
+        particles.Transform.position.y = this.parent.Transform.position.y - 15;
+        particles.Transform.position.z = this.parent.Transform.position.z;
+        particles.ParticleEmitter.emitCount = 0;
+        particles.ParticleEmitter.emitRate = 30;
+        particles.ParticleEmitter.color.setRGB(1, 0, 0);
+        particles.ParticleEmitter.randomLinearVelocity.x = 0.2;
+        particles.ParticleEmitter.randomLinearVelocity.y = 0.3;
+        particles.ParticleEmitter.randomLinearVelocity.z = 0.2;
+        particles.ParticleEmitter.linearVelocity.y = 1;
+        particles.ParticleEmitter.spawnArea.z = 25;
+        particles.ParticleEmitter.size = 3;
+        particles.ParticleForces.constantForce.y = 0.2;
+        particles.ParticleForces.damping = 0.97;
+        particles.ParticleForces.growth = 0.99;
+        particles.ParticleForces.randomForce.x = 0.4;
+        particles.ParticleForces.randomForce.y = 0.4;
+        particles.ParticleForces.randomForce.z = 0.4;
+
+        particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
+        particles.ParticleGradient.gradient.add(new THREE.Color(0xffff00), 0.2);
+        particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
+        particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
       }
 
       var wind = this.space.Wind;
