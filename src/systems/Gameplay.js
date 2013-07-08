@@ -75,7 +75,7 @@
     enemyBoat.addComponent("Wander");
     enemyBoat.Model.model = EnemyShip;
     enemyBoat.Transform.position.x = 200;
-    enemyBoat.Transform.position.z = 0;
+    enemyBoat.Transform.position.z = 800;
     enemyBoat.Light.offset.y = 20;
     TANK.Game.addEntity(enemyBoat, "EnemyShip");
 
