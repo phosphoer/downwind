@@ -13,7 +13,7 @@
 
     TANK.createWake(boat);
 
-    boat.Boat.forwardSpeed = 25;
+    boat.Boat.forwardSpeed = 125;
     boat.Boat.backwardSpeed = 0;
     boat.Boat.turnSpeed = .0025;
     boat.Boat.friction = .99;
@@ -82,26 +82,56 @@
     particles.Transform.position.copy(position);
     particles.ParticleEmitter.emitCount = 50;
     particles.ParticleEmitter.emitRate = 0;
-    particles.ParticleEmitter.lifetime = 1.8;
-    particles.ParticleEmitter.lifetimeVariance = 0.8;
-    particles.ParticleEmitter.randomLinearVelocity.x = 2;
-    particles.ParticleEmitter.randomLinearVelocity.y = 2;
-    particles.ParticleEmitter.randomLinearVelocity.z = 2;
+    particles.ParticleEmitter.lifetime = 1.6;
+    particles.ParticleEmitter.lifetimeVariance = 1;
+    particles.ParticleEmitter.randomLinearVelocity.x = 1;
+    particles.ParticleEmitter.randomLinearVelocity.y = 1;
+    particles.ParticleEmitter.randomLinearVelocity.z = 1;
     particles.maxparticlesInOneFrame = 1;
     particles.ParticleEmitter.spawnArea.z = 1;
     particles.ParticleEmitter.size = 5.5;
     particles.ParticleForces.damping = 0.97;
-    particles.ParticleForces.growth = 0.9;
+    particles.ParticleForces.growth = 0.95;
     particles.ParticleForces.randomForce.x = 0.4;
     particles.ParticleForces.randomForce.y = 0.4;
     particles.ParticleForces.randomForce.z = 0.4;
+    particles.ParticleForces.constantForce.y = -1;
     particles.TimedDeath.time = 3;
 
     particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
     particles.ParticleGradient.gradient.add(new THREE.Color(0xffff00), 0.2);
-    particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
+    particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.3);
     particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
+    return particles;
+  }
 
+  TANK.createExplosionSmoke = function (position, darkColor, lightColor)
+  {
+    var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient", "TimedDeath");
+    particles.Transform.position.copy(position);
+    particles.ParticleEmitter.emitCount = 10;
+    particles.ParticleEmitter.emitRate = 0;
+    particles.ParticleEmitter.lifetime = 2.2;
+    particles.ParticleEmitter.lifetimeVariance = 1.4;
+    particles.ParticleEmitter.randomLinearVelocity.x = 0.3;
+    particles.ParticleEmitter.randomLinearVelocity.y = 0.6;
+    particles.ParticleEmitter.randomLinearVelocity.z = 0.3;
+    particles.ParticleEmitter.linearVelocity.y = 0.3;
+    particles.maxparticlesInOneFrame = 1;
+    particles.ParticleEmitter.spawnArea.x = 3;
+    particles.ParticleEmitter.spawnArea.y = 3;
+    particles.ParticleEmitter.spawnArea.z = 3;
+    particles.ParticleEmitter.size = 7;
+    particles.ParticleForces.damping = 0.97;
+    particles.ParticleForces.growth = 0.98;
+    particles.ParticleForces.randomForce.x = 0.3;
+    particles.ParticleForces.randomForce.y = 0.3;
+    particles.ParticleForces.randomForce.z = 0.3;
+    particles.ParticleForces.constantForce.y = 1;
+    particles.TimedDeath.time = 3;
+
+    particles.ParticleGradient.gradient.add(new THREE.Color(darkColor), 0.0);
+    particles.ParticleGradient.gradient.add(new THREE.Color(lightColor), 1.0);
     return particles;
   }
 
