@@ -85,31 +85,44 @@ canvas
 
 #ending
 {
-    background-color:#F0F0F0;
-
   -webkit-box-shadow: rgb(255, 243, 195) 0px 0px 200px 50px inset;
   background-color: rgb(255, 253, 242);
   box-shadow: rgb(255, 243, 195) 0px 0px 200px 50px inset;
   display: block;
-
     width: 100%;
     height: 100%;
     left: 0px;
     top: 0px;
     position: absolute;
-    font-size: 90px;
-    text-align: center;
-    vertical-align: center;
     margin: 0px;
     opacity: 0;
 }
 
 #text
 {
+    font-size: 90px;
+    text-align: center;
+    vertical-align: center;  
   margin-left: 10%;
   margin-top: 10%;
   margin-right: 10%;
   opacity: .9;
+}
+
+#splashtext
+{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;  
+    font-size: 120px;
+    text-align: center;
+    vertical-align: middle;  
+    margin-top: 10%;
+    color: rgba(41, 36, 33, 0.8);
+    opacity: 0;
 }
 
 div.Fade

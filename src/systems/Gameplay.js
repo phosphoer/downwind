@@ -2,6 +2,32 @@
 {
   "use strict";
 
+  function displayPopup(name, text, fadeTime, displayTime)
+  {
+    $(name).text(text);
+
+    $(name).animate(
+    {
+      opacity: 1.0,
+    },
+    {
+      duration: fadeTime,
+      complete: function ()
+      {
+        setTimeout(function ()
+        {
+          $(name).animate(
+          {
+            opacity: 0.0,
+          },
+          {
+            duration: fadeTime
+          });
+        }, displayTime);
+      }
+    });
+  }
+
   TANK.registerComponent("Gameplay")
 
   .initialize(function ()
@@ -17,6 +43,11 @@
     {
       duration: 6000
     });
+
+    setTimeout(function ()
+    {
+      displayPopup("#splashtext", "WASD to navigate", 4000, 1000);
+    }, 4000);
 
     var enemyBoat = TANK.createBoat();
     enemyBoat.addComponent("Wander");
@@ -56,6 +87,7 @@
         {
           duration: 8000
         });
+
       }
     });
   });
