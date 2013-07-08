@@ -2,11 +2,38 @@
 {
   "use strict";
 
+  function displayPopup(name, text, fadeTime, displayTime)
+  {
+    $(name).text(text);
+
+    $(name).animate(
+    {
+      opacity: 1.0,
+    },
+    {
+      duration: fadeTime,
+      complete: function ()
+      {
+        setTimeout(function ()
+        {
+          $(name).animate(
+          {
+            opacity: 0.0,
+          },
+          {
+            duration: fadeTime
+          });
+        }, displayTime);
+      }
+    });
+  }
+
   TANK.registerComponent("Gameplay")
 
   .initialize(function ()
   {
     this.gameover = false;
+    this.inrange = false;
     this.seagullTimer = 0;
     this.seagullInterval = 10;
     this.seagullSound = new Audio("res/seagull.wav");
@@ -29,6 +56,11 @@
       duration: 6000
     });
 
+    setTimeout(function ()
+    {
+      displayPopup("#splashtext", "WASD to navigate", 4000, 1000);
+    }, 4000);
+
     var enemyBoat = TANK.createBoat();
     enemyBoat.addComponent("Wander");
     enemyBoat.Model.model = EnemyShip;
@@ -46,6 +78,21 @@
 
     this.addEventListener("OnEnterFrame", function (dt)
     {
+      if (this.inrange === false)
+      {
+        var enemy = TANK.Game.getEntity("EnemyShip");
+        var player = TANK.Game.getEntity("Boat");
+
+        var d = enemy.Transform.position.distanceTo(player.Transform.position);
+        if (d < 300)
+        {
+          this.inrange = true;
+          enemy.Boat.canfire = true;
+          player.Boat.canfire = true;
+          displayPopup("#splashtext", "Spacebar to fire cannons", 4000, 1000);
+        }
+      }
+
       this.seagullTimer += dt;
 
       if (this.seagullTimer > this.seagullInterval)
@@ -67,8 +114,8 @@
           duration: 25000
         });
       }
-    });
 
+    });
   });
 
 }(this, this.TANK = this.TANK ||

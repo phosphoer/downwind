@@ -28,6 +28,8 @@
     this.timer = this.fireTime;
 
     this.cannonsPerSide = 3;
+
+    this.canfire = false;
   })
 
   .initialize(function ()
@@ -39,7 +41,7 @@
 
     this.attemptFire = function ()
     {
-      if (this.timer > this.fireTime)
+      if (this.canfire && this.timer > this.fireTime)
       {
         var camera = this.space.getEntity("Camera");
         var yaw = camera.Camera.yaw;

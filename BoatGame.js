@@ -5,7 +5,7 @@ function main()
   var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Gameplay", "Stats");
   TANK.addSpace(space, "Game");
 
-  var boat = TANK.createBoat();
+  var boat = TANK.createBoat(true);
   boat.addComponents("Skybox", "Controller", "Hierarchy", "Light");
   boat.Skybox.skyColor.setHex(0xCCFFFF);
   boat.Skybox.baseColor.setHex(0x2F4F8F);

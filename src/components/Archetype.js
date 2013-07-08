@@ -2,10 +2,11 @@
 {
   "use strict";
 
-  TANK.createBoat = function ()
+  TANK.createBoat = function (hasCannons)
   {
     var boat = TANK.createEntity("Transform", "Model", "Boat", "ModelCollider", "Bouyant", "Hierarchy");
 
+    boat.Transform.position.y = 35;
     boat.ModelCollider.debugDraw = false;
     boat.ModelCollider.scale = 0.6;
     boat.Model.model = PirateShip;
@@ -19,26 +20,29 @@
     boat.Bouyant.wobble = true;
     boat.Bouyant.wobbleAmount = 0.1;
 
-    for (var i = 0; i < 3; ++i)
+    if (hasCannons)
     {
-      var starboardCannon = TANK.createCannon();
-      boat.Hierarchy.attachNonRelative(starboardCannon);
-      starboardCannon.Transform.position.set(13, -20, i * 5 - 5);
-      starboardCannon.Transform.rotation.y = Math.PI * 0.5;
-      starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
-      starboardCannon.Cannon.cannonIndex = i;
-      starboardCannon.Cannon.isLeft = true;
-    }
+      for (var i = 0; i < 3; ++i)
+      {
+        var starboardCannon = TANK.createCannon();
+        boat.Hierarchy.attachNonRelative(starboardCannon);
+        starboardCannon.Transform.position.set(11, -21.1, i * 6 - 5.8);
+        starboardCannon.Transform.rotation.y = Math.PI * 0.5;
+        starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
+        starboardCannon.Cannon.cannonIndex = i;
+        starboardCannon.Cannon.isLeft = true;
+      }
 
-    for (var i = 0; i < 3; ++i)
-    {
-      var starboardCannon = TANK.createCannon();
-      boat.Hierarchy.attachNonRelative(starboardCannon);
-      starboardCannon.Transform.position.set(-11, -20, i * 5 - 5);
-      starboardCannon.Transform.rotation.y = -Math.PI * 0.5;
-      starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
-      starboardCannon.Cannon.cannonIndex = i;
-      starboardCannon.Cannon.isLeft = false;
+      for (var i = 0; i < 3; ++i)
+      {
+        var starboardCannon = TANK.createCannon();
+        boat.Hierarchy.attachNonRelative(starboardCannon);
+        starboardCannon.Transform.position.set(-9, -21.1, i * 6 - 6.2);
+        starboardCannon.Transform.rotation.y = -Math.PI * 0.5;
+        starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
+        starboardCannon.Cannon.cannonIndex = i;
+        starboardCannon.Cannon.isLeft = false;
+      }
     }
 
     return boat;
