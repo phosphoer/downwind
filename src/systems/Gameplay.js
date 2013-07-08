@@ -75,7 +75,7 @@
     enemyBoat.addComponent("Wander");
     enemyBoat.Model.model = EnemyShip;
     enemyBoat.Transform.position.x = 200;
-    enemyBoat.Transform.position.z = 800;
+    enemyBoat.Transform.position.z = 0;
     enemyBoat.Light.offset.y = 20;
     TANK.Game.addEntity(enemyBoat, "EnemyShip");
 
@@ -87,15 +87,15 @@
       TANK.Game.addEntity(crate);
     }
 
-    for (var i = 0; i < 2; ++i)
-    {
-      var fish = TANK.createFish();
-      var spawnPoint = new global.THREE.Vector3(Math.random() * 600 - 200,
-                                                Math.random() * 600 - 200,  
-                                                15 + Math.random() * 8);
-      fish.Transform.position.copy(spawnPoint);
-      TANK.Game.addEntity(fish);
-    }
+    // for (var i = 0; i < 2; ++i)
+    // {
+    //   var fish = TANK.createFish();
+    //   var spawnPoint = new global.THREE.Vector3(Math.random() * 600 - 200,
+    //     Math.random() * 600 - 200,
+    //     15 + Math.random() * 8);
+    //   fish.Transform.position.copy(spawnPoint);
+    //   TANK.Game.addEntity(fish);
+    // }
 
     this.addEventListener("OnEnterFrame", function (dt)
     {

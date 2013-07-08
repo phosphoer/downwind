@@ -56,6 +56,18 @@
         this.health -= 20;
         other.parent.CannonBall.explode();
       }
+
+      if (other.parent.Boat)
+      {
+        this.throttle = 0;
+        this.velocity.set(0, 0, 0);
+        other.parent.Boat.throttle = 0;
+        other.parent.Boat.velocity.set(0, 0, 0);
+        this.health = 0;
+        other.parent.Boat.health = 0;
+        this.space.Gameplay.explode2Sound.play();
+        this.space.Gameplay.explode1Sound.play();
+      }
     }
 
     this.addEventListener("OnEnterFrame", function (dt)
