@@ -48,6 +48,14 @@
       this.play();
     }, false);
 
+    this.music = new Audio("res/BoatGameSong.mp3");
+    this.music.play();
+    this.music.addEventListener("ended", function ()
+    {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+
     $("#fullscreen").animate(
     {
       opacity: 0.0

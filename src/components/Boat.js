@@ -29,7 +29,7 @@
 
     this.cannonsPerSide = 3;
 
-    this.canfire = true;
+    this.canfire = false;
   })
 
   .initialize(function ()
