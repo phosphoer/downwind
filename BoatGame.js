@@ -2,7 +2,7 @@
 
 function main()
 {
-  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Gameplay");
+  var space = TANK.createSpace("InputManager", "Graphics", "Fog", "Wind", "Physics", "Gameplay", "Stats");
   TANK.addSpace(space, "Game");
 
   var boat = TANK.createBoat();
@@ -11,12 +11,6 @@ function main()
   boat.Skybox.baseColor.setHex(0x2F4F8F);
   boat.Skybox.scale.set(5000, 5000, 5000);
   boat.Light.offset.y = 20;
-
-  var starboardCannon = TANK.createCannon();
-  boat.Hierarchy.attachNonRelative(starboardCannon);
-  starboardCannon.Transform.position.set(13, -20, 0);
-  starboardCannon.Transform.rotation.y = Math.PI * 0.5;
-  starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
 
   var flagProxy = TANK.createEntity("Transform, Hierarchy");
   boat.Hierarchy.attachNonRelative(flagProxy);

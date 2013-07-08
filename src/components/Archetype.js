@@ -18,6 +18,28 @@
     boat.Bouyant.wobble = true;
     boat.Bouyant.wobbleAmount = 0.1;
 
+    for (var i = 0; i < 3; ++i)
+    {
+      var starboardCannon = TANK.createCannon();
+      boat.Hierarchy.attachNonRelative(starboardCannon);
+      starboardCannon.Transform.position.set(13, -20, i * 5 - 5);
+      starboardCannon.Transform.rotation.y = Math.PI * 0.5;
+      starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
+      starboardCannon.Cannon.cannonIndex = i;
+      starboardCannon.Cannon.isLeft = true;
+    }
+
+    for (var i = 0; i < 3; ++i)
+    {
+      var starboardCannon = TANK.createCannon();
+      boat.Hierarchy.attachNonRelative(starboardCannon);
+      starboardCannon.Transform.position.set(-11, -20, i * 5 - 5);
+      starboardCannon.Transform.rotation.y = -Math.PI * 0.5;
+      starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
+      starboardCannon.Cannon.cannonIndex = i;
+      starboardCannon.Cannon.isLeft = false;
+    }
+
     return boat;
   }
 
@@ -53,19 +75,22 @@
   {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient", "TimedDeath");
     particles.Transform.position.copy(position);
-    particles.ParticleEmitter.emitCount = 100;
+    particles.ParticleEmitter.emitCount = 50;
     particles.ParticleEmitter.emitRate = 0;
+    particles.ParticleEmitter.lifetime = 1.8;
+    particles.ParticleEmitter.lifetimeVariance = 0.8;
     particles.ParticleEmitter.randomLinearVelocity.x = 2;
     particles.ParticleEmitter.randomLinearVelocity.y = 2;
     particles.ParticleEmitter.randomLinearVelocity.z = 2;
     particles.maxparticlesInOneFrame = 1;
     particles.ParticleEmitter.spawnArea.z = 1;
-    particles.ParticleEmitter.size = 3;
+    particles.ParticleEmitter.size = 5.5;
     particles.ParticleForces.damping = 0.97;
-    particles.ParticleForces.growth = 0.99;
+    particles.ParticleForces.growth = 0.985;
     particles.ParticleForces.randomForce.x = 0.4;
     particles.ParticleForces.randomForce.y = 0.4;
     particles.ParticleForces.randomForce.z = 0.4;
+    particles.TimedDeath.time = 3;
 
     particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
     particles.ParticleGradient.gradient.add(new THREE.Color(0xffff00), 0.2);
@@ -86,6 +111,7 @@
     particles.ParticleEmitter.randomLinearVelocity.y = 0.5;
     particles.ParticleEmitter.randomLinearVelocity.z = 0.5;
     particles.ParticleEmitter.linearVelocity.z = 3;
+
     particles.ParticleEmitter.spawnArea.x = 0.3;
     particles.ParticleEmitter.spawnArea.y = 0.3;
     particles.ParticleEmitter.spawnArea.z = 0.3;
