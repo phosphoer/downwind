@@ -55,8 +55,8 @@
     {
       if (other.parent.CannonBall && other.parent.CannonBall.owner != this.parent)
       {
-        this.space.removeEntity(other.parent);
-        this.health -= 10;
+        this.health -= 20;
+        other.parent.CannonBall.explode();
       }
     }
 
@@ -70,6 +70,10 @@
       if (this.health <= 0)
       {
         this.parent.Bouyant.sinking = true;
+        if (this.parent.Controller)
+          this.parent.removeComponent("Controller");
+        if (this.parent.Wander)
+          this.parent.removeComponent("Wander");
       }
 
       var wind = this.space.Wind;

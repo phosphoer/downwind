@@ -17,6 +17,7 @@
 
   .initialize(function ()
   {
+    this.sound = new Audio(global.Math.random() < 0.5 ? "res/cannon1.wav" : "res/cannon2.wav");
     this.initialPosition = this.parent.Transform.position.clone();
 
     this.addEventListener("OnEnterFrame", function (dt)
@@ -70,6 +71,7 @@
       blastEffect.ParticleEmitter.linearVelocity.add(partialVelocity);
 
       this.space.addEntity(blastEffect);
+      this.sound.play();
     });
 
 
