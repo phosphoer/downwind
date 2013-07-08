@@ -35,6 +35,13 @@
     this.seagullTimer = 0;
     this.seagullInterval = 10;
     this.seagullSound = new Audio("res/seagull.wav");
+    this.seaSound = new Audio("res/sea.mp3");
+    this.seaSound.play();
+    this.seaSound.addEventListener("ended", function ()
+    {
+      this.currentTime = 0;
+      this.play();
+    }, false);
 
     $("#fullscreen").animate(
     {

@@ -50,7 +50,7 @@
       }
       else if (key === TANK.SPACE || key === TANK.F)
       {
-        this.space.dispatchEvent("OnFiring", this.parent);
+        this.parent.Boat.attemptFire();
       }
     });
 

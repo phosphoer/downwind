@@ -20,6 +20,14 @@
     this.isMother = false;
 
     this.forwardCache = new global.THREE.Vector3();
+
+    this.fireTime = 1.5;
+    this.fireCount = 0;
+
+    // Let the user shoot when the game starts
+    this.timer = this.fireTime;
+
+    this.cannonsPerSide = 3;
   })
 
   .initialize(function ()
@@ -29,15 +37,38 @@
       this.isMother = true;
     }
 
+    this.attemptFire = function ()
+    {
+      if (this.timer > this.fireTime)
+      {
+        var camera = this.space.getEntity("Camera");
+        var yaw = camera.Camera.yaw;
+        this.space.dispatchEvent("OnAttemptFire", this.parent, yaw, this.fireCount % this.cannonsPerSide);
+        this.timer = 0;
+        ++this.fireCount;
+      }
+    }
+
     this.onCollide = function (other)
     {
-      this.health -= 1;
+      if (other.parent.CannonBall && other.parent.CannonBall.owner != this.parent)
+      {
+        this.space.removeEntity(other.parent);
+        this.health -= 10;
+      }
     }
 
     this.addEventListener("OnEnterFrame", function (dt)
     {
+      this.timer += dt;
+
       var t = this.parent.Transform;
       t.getForward(this.forwardCache);
+
+      if (this.health <= 0)
+      {
+        this.parent.Bouyant.sinking = true;
+      }
 
       var wind = this.space.Wind;
 
@@ -98,18 +129,7 @@
 
       // Apply angular friction
       this.angularVelocity *= this.friction;
-
       t.rotation.y += this.angularVelocity * dt;
-
-      // Float on Ocean
-      var obj = this.space.getEntity("Ocean");
-      if (obj)
-      {
-        var height = obj.Ocean.getHeight(t.position.x, t.position.z);
-        height += (this.parent.Model.sizeY * this.parent.Transform.scale.y) * 0.5 * 0.8;
-        t.position.y += (height - t.position.y) * 0.08;
-      }
-
     });
   });
 
