@@ -31,6 +31,12 @@
     {
       var explosion = TANK.createExplosion(this.parent.Transform.position);
       this.space.addEntity(explosion);
+
+      var smoke1 = TANK.createExplosionSmoke(this.parent.Transform.position, 0x555555, 0xdddddd);
+      this.space.addEntity(smoke1);
+      var smoke2 = TANK.createExplosionSmoke(this.parent.Transform.position, 0x222222, 0x999999);
+      this.space.addEntity(smoke2);
+
       this.space.removeEntity(this.parent);
       if (global.Math.random() < 0.5)
         this.space.Gameplay.explode1Sound.play();

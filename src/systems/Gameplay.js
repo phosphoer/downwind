@@ -87,6 +87,16 @@
       TANK.Game.addEntity(crate);
     }
 
+    // for (var i = 0; i < 2; ++i)
+    // {
+    //   var fish = TANK.createFish();
+    //   var spawnPoint = new global.THREE.Vector3(Math.random() * 600 - 200,
+    //     Math.random() * 600 - 200,
+    //     15 + Math.random() * 8);
+    //   fish.Transform.position.copy(spawnPoint);
+    //   TANK.Game.addEntity(fish);
+    // }
+
     this.addEventListener("OnEnterFrame", function (dt)
     {
       if (this.inrange === false)

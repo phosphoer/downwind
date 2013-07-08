@@ -39,12 +39,10 @@
       this.isMother = true;
     }
 
-    this.attemptFire = function ()
+    this.attemptFire = function (yaw)
     {
       if (this.canfire && this.timer > this.fireTime)
       {
-        var camera = this.space.getEntity("Camera");
-        var yaw = camera.Camera.yaw;
         this.space.dispatchEvent("OnAttemptFire", this.parent, yaw, this.fireCount % this.cannonsPerSide);
         this.timer = 0;
         ++this.fireCount;
@@ -58,6 +56,18 @@
         this.health -= 20;
         other.parent.CannonBall.explode();
       }
+
+      if (other.parent.Boat)
+      {
+        this.throttle = 0;
+        this.velocity.set(0, 0, 0);
+        other.parent.Boat.throttle = 0;
+        other.parent.Boat.velocity.set(0, 0, 0);
+        this.health = 0;
+        other.parent.Boat.health = 0;
+        this.space.Gameplay.explode2Sound.play();
+        this.space.Gameplay.explode1Sound.play();
+      }
     }
 
     this.addEventListener("OnEnterFrame", function (dt)
@@ -70,8 +80,47 @@
       if (this.health <= 0)
       {
         this.parent.Bouyant.sinking = true;
+        if (this.fire)
+        {
+          this.fire.ParticleEmitter.emitCount = 1000;
+        }
         if (this.parent.Controller)
           this.parent.removeComponent("Controller");
+      }
+
+      if (this.fire)
+      {
+        this.fire.Transform.position.x = this.parent.Transform.position.x;
+        this.fire.Transform.position.y = this.parent.Transform.position.y - 15;
+        this.fire.Transform.position.z = this.parent.Transform.position.z;
+      }
+
+      if (this.health <= 50 && !this.critical)
+      {
+        this.critical = true;
+        var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
+        this.fire = particles;
+        TANK.Game.addEntity(particles);
+        particles.ParticleEmitter.emitCount = 0;
+        particles.ParticleEmitter.emitRate = 30;
+        particles.ParticleEmitter.color.setRGB(1, 0, 0);
+        particles.ParticleEmitter.randomLinearVelocity.x = 0.2;
+        particles.ParticleEmitter.randomLinearVelocity.y = 0.3;
+        particles.ParticleEmitter.randomLinearVelocity.z = 0.2;
+        particles.ParticleEmitter.linearVelocity.y = 1;
+        particles.ParticleEmitter.spawnArea.z = 25;
+        particles.ParticleEmitter.size = 3;
+        particles.ParticleForces.constantForce.y = 0.2;
+        particles.ParticleForces.damping = 0.97;
+        particles.ParticleForces.growth = 0.99;
+        particles.ParticleForces.randomForce.x = 0.4;
+        particles.ParticleForces.randomForce.y = 0.4;
+        particles.ParticleForces.randomForce.z = 0.4;
+
+        particles.ParticleGradient.gradient.add(new THREE.Color(0xffffff), 0.0);
+        particles.ParticleGradient.gradient.add(new THREE.Color(0xffff00), 0.2);
+        particles.ParticleGradient.gradient.add(new THREE.Color(0xff0000), 0.5);
+        particles.ParticleGradient.gradient.add(new THREE.Color(0x000000), 1.0);
       }
 
       var wind = this.space.Wind;

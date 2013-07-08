@@ -14,9 +14,9 @@
 
   .initialize(function ()
   {
-    this.parent.Boat.throttle = 0;
-    this.parent.Boat.forwardSpeed = 80;
-    this.parent.Boat.turnSpeed = .005;
+    this.parent.Boat.throttle = 1;
+    this.parent.Boat.forwardSpeed = 15;
+    this.parent.Boat.turnSpeed = .003;
 
     this.addEventListener("OnEnterFrame", function (dt)
     {
