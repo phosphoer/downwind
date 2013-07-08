@@ -72,8 +72,6 @@
         this.parent.Bouyant.sinking = true;
         if (this.parent.Controller)
           this.parent.removeComponent("Controller");
-        if (this.parent.Wander)
-          this.parent.removeComponent("Wander");
       }
 
       var wind = this.space.Wind;

@@ -91,7 +91,7 @@
     particles.ParticleEmitter.spawnArea.z = 1;
     particles.ParticleEmitter.size = 5.5;
     particles.ParticleForces.damping = 0.97;
-    particles.ParticleForces.growth = 0.985;
+    particles.ParticleForces.growth = 0.9;
     particles.ParticleForces.randomForce.x = 0.4;
     particles.ParticleForces.randomForce.y = 0.4;
     particles.ParticleForces.randomForce.z = 0.4;
