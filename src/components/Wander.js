@@ -20,6 +20,9 @@
 
     this.addEventListener("OnEnterFrame", function (dt)
     {
+      if (this.parent.Boat.health <= 0)
+        this.parent.Boat.throttle = 0;
+
       this.et += dt;
       if (this.et > this.turnTime)
       {
