@@ -13,7 +13,7 @@
 
     TANK.createWake(boat);
 
-    boat.Boat.forwardSpeed = 125;
+    boat.Boat.forwardSpeed = 25;
     boat.Boat.backwardSpeed = 0;
     boat.Boat.turnSpeed = .0025;
     boat.Boat.friction = .99;
@@ -218,7 +218,7 @@
     fish.Transform.rotation.z = 0;
 
     // make the smaller
-    var size = 0.5 ;
+    var size = 0.5;
     fish.Transform.scale.x = size;
     fish.Transform.scale.y = size;
     fish.Transform.scale.z = size;
