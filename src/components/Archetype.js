@@ -174,6 +174,29 @@
     return cannonBall;
   }
 
+  TANK.createFish = function ()
+  {
+    var fish = TANK.createEntity("Transform", "Model", "Fish");
+
+    fish.Model.model = Fish1;
+    // make it darker
+    fish.Model.materialDiffuse = 0x606060;
+
+    // rotate model upright
+    fish.Transform.rotation.x = 0;
+    fish.Transform.rotation.y = global.Math.PI;
+    fish.Transform.rotation.z = 0;
+
+    // make the smaller
+    var size = 0.5 ;
+    fish.Transform.scale.x = size;
+    fish.Transform.scale.y = size;
+    fish.Transform.scale.z = size;
+
+    return fish;
+  }
+
+
   TANK.createWake = function (obj)
   {
     var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient", "ParticleWake");
