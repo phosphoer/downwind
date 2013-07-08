@@ -26,7 +26,7 @@
       {
         var starboardCannon = TANK.createCannon();
         boat.Hierarchy.attachNonRelative(starboardCannon);
-        starboardCannon.Transform.position.set(12, -21.1, i * 6 - 6);
+        starboardCannon.Transform.position.set(11, -21.1, i * 6 - 5.8);
         starboardCannon.Transform.rotation.y = Math.PI * 0.5;
         starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
         starboardCannon.Cannon.cannonIndex = i;
@@ -37,7 +37,7 @@
       {
         var starboardCannon = TANK.createCannon();
         boat.Hierarchy.attachNonRelative(starboardCannon);
-        starboardCannon.Transform.position.set(-10, -21.1, i * 6 - 6);
+        starboardCannon.Transform.position.set(-9, -21.1, i * 6 - 6.2);
         starboardCannon.Transform.rotation.y = -Math.PI * 0.5;
         starboardCannon.Transform.scale.set(0.2, 0.2, 0.2);
         starboardCannon.Cannon.cannonIndex = i;
