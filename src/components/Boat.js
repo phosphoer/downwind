@@ -76,15 +76,19 @@
           this.parent.removeComponent("Controller");
       }
 
+      if (this.fire)
+      {
+        this.fire.Transform.position.x = this.parent.Transform.position.x;
+        this.fire.Transform.position.y = this.parent.Transform.position.y - 15;
+        this.fire.Transform.position.z = this.parent.Transform.position.z;
+      }
+
       if (this.health <= 50 && !this.critical)
       {
         this.critical = true;
         var particles = TANK.createEntity("Transform", "ParticleEmitter", "ParticleForces", "ParticleGradient");
         this.fire = particles;
         TANK.Game.addEntity(particles);
-        particles.Transform.position.x = this.parent.Transform.position.x;
-        particles.Transform.position.y = this.parent.Transform.position.y - 15;
-        particles.Transform.position.z = this.parent.Transform.position.z;
         particles.ParticleEmitter.emitCount = 0;
         particles.ParticleEmitter.emitRate = 30;
         particles.ParticleEmitter.color.setRGB(1, 0, 0);
