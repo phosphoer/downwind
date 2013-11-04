@@ -61,7 +61,11 @@
       opacity: 0.0
     },
     {
-      duration: 6000
+      duration: 6000,
+      complete: function()
+      {
+        $(this).remove();
+      }
     });
 
     setTimeout(function ()
